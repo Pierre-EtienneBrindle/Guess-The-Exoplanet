@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using SingletonBehavior;
-using UnityEngine.SceneManager;
+using UnityEngine.SceneManagement;
 
 public class GameManager : SingletonMonobehavior<GameManager>
 {
@@ -12,14 +10,21 @@ public class GameManager : SingletonMonobehavior<GameManager>
     }
 
 
-    public void LoadMainMenu()
+    public void MenuSceneLoad()
     {
-        LoadScene("Title scene");
+        //"Title scene"
+        SceneManager.LoadScene("test1");
     }
 
-    public void LoadGameScene();
+
+    public void GameSceneLoad()
     {
-        LoadScene("Game");
-        
+        SceneManager.LoadScene("test2");
+    }
+
+
+    public void WikiSceneLoad()
+    {
+        SceneManager.LoadScene("Wiki");
     }
 }
