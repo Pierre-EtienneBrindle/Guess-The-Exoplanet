@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : SingletonMonobehavior<GameManager>
 {
-    private void SLoad(String scene_name)
+    private void SLoad(string scene_name)
     {
         SceneManager.LoadScene(scene_name);
     }
@@ -37,11 +37,11 @@ public class GameManager : SingletonMonobehavior<GameManager>
 
     public void StarCounterSceneLoad()
     {
-        SLoad("StarCounterMG")
+        SLoad("StarCounterMG");
     }
 
     public void MiniGame2SceneLoad()
     {
-        SLoad("")
+        SLoad("");
     }
 }
