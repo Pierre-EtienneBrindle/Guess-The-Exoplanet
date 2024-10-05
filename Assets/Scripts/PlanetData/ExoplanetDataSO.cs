@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class ExoplanetDataSO : ScriptableObject
 {
-    
+    [SerializeField] string name;
 }
