@@ -1,0 +1,19 @@
+{
+    "name": "SingletonBehaviorEditors",
+    "rootNamespace": "SingletonBehavior.Editors",
+    "references": [
+        "GUID:1e2fae763b8e2ed459452249f81f48bc",
+        "GUID:343deaaf83e0cee4ca978e7df0b80d21",
+        "GUID:7c04f0dfa9243c04681a55d90d3ff3fc",
+        "GUID:0acc523941302664db1f4e527237feb3"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
