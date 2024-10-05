@@ -6,8 +6,11 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/title scene.unity
+    path: Assets/Scenes/Menu.unity
     guid: 3ec2eb4fa0a8c0f418b1d223dc17c0c3
+  - enabled: 1
+    path: Assets/Scenes/Credit.unity
+    guid: df1805e924807b546b5b8d95f2478a01
   - enabled: 1
     path: Assets/Scenes/PlyaerMovementTest.unity
     guid: 00f27ebef7f59c7428e87732c342eb6e

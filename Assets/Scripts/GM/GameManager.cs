@@ -16,7 +16,7 @@ public class GameManager : SingletonMonobehavior<GameManager>
         switch (scene)
         {
             case PossibleScenes.Menu:
-                SLoad("title scene");
+                SLoad("Menu");
                 break;
             case PossibleScenes.Credit:
                 SLoad("Credit");
@@ -50,7 +50,7 @@ public class GameManager : SingletonMonobehavior<GameManager>
 public enum PossibleScenes {
     Menu,
     Credit,
-    Vaisseau,
+    Ship,
     MiniG1,
     MiniG2,
     MiniG3,
