@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            Destroy(GameObject);
+            Destroy(gameObject);
         }
     }
     

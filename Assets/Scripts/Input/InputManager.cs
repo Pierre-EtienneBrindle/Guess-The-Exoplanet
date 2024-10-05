@@ -5,14 +5,14 @@ using SingletonBehavior;
 
 public class InputManager : SingletonMonobehavior<InputManager>
 {
-    PlayerControl controls;
+    PlayerInput controls;
     protected override void Awake()
     {
         base.Awake();   
-        controls = new PlayerControl();
+        controls = new PlayerInput();
     }
 
-    public PlayerControl.SpaceShipActions GetSpaceShipActions()
+    public PlayerInput.SpaceShipActions GetSpaceShipActions()
     {
         controls.SpaceShip.Enable();
         return controls.SpaceShip;
