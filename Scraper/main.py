@@ -37,7 +37,7 @@ def main():
             try:
                 data = get(url.url, headers=headers)
                 if data.status_code == 200:
-                    with open(url.table_name, "wb") as file:
+                    with open("data/" + url.table_name, "wb") as file:
                         file.write()
                         break
                 print(f"Received : {data.status_code}, rate limited ?")
