@@ -9,7 +9,9 @@ public class Movement : MonoBehaviour
 
     PlayerInput.SpaceShipActions SpaceShipInput;
 
-    public float generalSpeed = 10;
+    Vector3 movement = new(0, 0, 0);
+
+    [SerializeField] float generalSpeed = 10f;
 
     private void Awake()
     {
@@ -25,9 +27,13 @@ public class Movement : MonoBehaviour
     void Update()
     {
         Vector2 input = SpaceShipInput.Movement.ReadValue<Vector2>();
-        Vector3 speed = new(input.x, input.y, 0);
-
-        characterController.Move(Time.deltaTime * generalSpeed * speed);
+        Vector3 speed = new(movement.x + input.x, movement.y + input.y, 0);
+        movement.x += input.x;
+        movement.y += input.y;
+        characterController.Move(Time.deltaTime * generalSpeed * movement);
+        Vector3 physicSpeed = createMovement(speed, 0.0f);
+        movement.x = physicSpeed.x;
+        movement.y = physicSpeed.y;
     }
 
     private void OnDisable()
@@ -35,16 +41,9 @@ public class Movement : MonoBehaviour
 
     }
 
-    Vector3 spacePhysics(Vector3 speed) {
-        Vector3 spaceSpeed = new(0, 0, 0);
-        return spaceSpeed;
-    }
-
-    Vector3 createMovement(Vector2 inp, float genSpeed, float antiForce) {
-        
-        Vector3 spaceMovement = spacePhysics(inp);
-        //Debug.Log(speed.x);
-        Debug.Log(spaceMovement.x);
-        return spaceMovement;
+    // Fonction qui gere le mouvement sous forme de speed
+    Vector3 createMovement(Vector3 inp, float antiForce) {
+        Vector3 spd = new(inp.x * (antiForce/100.0f), inp.y * (antiForce / 100.0f), 0);
+        return spd;
     }
 }
