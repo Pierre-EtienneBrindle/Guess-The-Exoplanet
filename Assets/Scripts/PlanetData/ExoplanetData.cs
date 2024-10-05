@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 public class ExoplanetData
 {
     public string PlanetName { get; private set; }
@@ -11,4 +13,21 @@ public class ExoplanetData
     public float DistanceFromEarth { get; private set; }
     public DiscoveryMethodOptions DiscoveryMethod { get; private set; }
     public float TransitDuration { get; private set; }
+
+    public ExoplanetData(string name, Dictionary<string, string> keyValuePairs)
+    {
+        PlanetName = name;
+        foreach (var keyValue in keyValuePairs)
+        {
+            switch (keyValue.Key)
+            {
+                case "hostname":
+                    SystemName = keyValue.Value;
+                    break;
+
+                default:
+                    break;
+            }
+        }
+    }
 }
