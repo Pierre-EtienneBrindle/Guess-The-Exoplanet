@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : SingletonMonobehavior<GameManager>
 {
-    private void SLoad(string scene_name)
+    public void SLoad(string scene_name)
     {
         SceneManager.LoadScene(scene_name);
     }
@@ -25,22 +25,29 @@ public class GameManager : SingletonMonobehavior<GameManager>
 
     public void GameSceneLoad()
     {
-        SLoad("test2");
+        Debug.Log("gugusss");
+        SLoad("PlyaerMovementTest");
     }
 
 
-    public void WikiSceneLoad()
+    public void WikiLoad()
     {
         SLoad("Wiki");
     }
 
 
-    public void StarCounterSceneLoad()
+    public void StarCounterLoad()
     {
         SLoad("StarCounterMG");
     }
 
-    public void MiniGame2SceneLoad()
+    public void MiniGame2Load()
+    {
+        SLoad("");
+    }
+
+
+    public void MiniGame3Load()
     {
         SLoad("");
     }
