@@ -4,6 +4,12 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : SingletonMonobehavior<GameManager>
 {
+    private void SLoad(String scene_name)
+    {
+        SceneManager.LoadScene(scene_name);
+    }
+
+
     protected override void Awake()
     {
         base.Awake();
@@ -13,18 +19,29 @@ public class GameManager : SingletonMonobehavior<GameManager>
     public void MenuSceneLoad()
     {
         //"Title scene"
-        SceneManager.LoadScene("test1");
+        SLoad("test1");
     }
 
 
     public void GameSceneLoad()
     {
-        SceneManager.LoadScene("test2");
+        SLoad("test2");
     }
 
 
     public void WikiSceneLoad()
     {
-        SceneManager.LoadScene("Wiki");
+        SLoad("Wiki");
+    }
+
+
+    public void StarCounterSceneLoad()
+    {
+        SLoad("StarCounterMG")
+    }
+
+    public void MiniGame2SceneLoad()
+    {
+        SLoad("")
     }
 }
