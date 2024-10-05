@@ -11,7 +11,8 @@ public class Movement : MonoBehaviour
 
     Vector3 movement = new(0, 0, 0);
 
-    [SerializeField] float generalSpeed = 10f;
+    [SerializeField] float generalSpeedX = 5.0f;
+    [SerializeField] float generalSpeedY = 2.0f;
 
     private void Awake()
     {
@@ -27,10 +28,11 @@ public class Movement : MonoBehaviour
     void Update()
     {
         Vector2 input = SpaceShipInput.Movement.ReadValue<Vector2>();
+        Vector3 move = new(input.x * generalSpeedX, input.y * generalSpeedY, 0);
         //Vector3 speed = new(movement.x + input.x, movement.y + input.y, 0);
         //movement.x += input.x;
         //movement.y += input.y;
-        characterController.Move(Time.deltaTime * generalSpeed * input);
+        characterController.Move(Time.deltaTime * move);
         //Vector3 physicSpeed = createMovement(speed, 0.0f);
         //movement.x = physicSpeed.x;
         //movement.y = physicSpeed.y;
