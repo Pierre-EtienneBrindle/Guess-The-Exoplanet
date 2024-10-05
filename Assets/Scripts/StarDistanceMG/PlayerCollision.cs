@@ -1,9 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 
-public class StarDistance : MonoBehaviour
+public class PlayerCollision : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
@@ -13,13 +12,6 @@ public class StarDistance : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-        
-    }
-
-    //UnityEngine.Random
-
-    private void OnDisable()
     {
         
     }

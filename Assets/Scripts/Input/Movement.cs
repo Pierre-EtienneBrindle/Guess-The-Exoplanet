@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml.Schema;
 using UnityEngine;
 using UnityEngine.Windows;
 
@@ -9,10 +10,10 @@ public class Movement : MonoBehaviour
 
     PlayerInput.SpaceShipActions SpaceShipInput;
 
-    Vector3 movement = new(0, 0, 0);
+    //Vector3 movement = new(0, 0, 0);
 
-    [SerializeField] float generalSpeedX = 5.0f;
-    [SerializeField] float generalSpeedY = 2.0f;
+    [SerializeField] float generalSpeedX = 5f;
+    [SerializeField] float generalSpeedY = 0f;
 
     private void Awake()
     {

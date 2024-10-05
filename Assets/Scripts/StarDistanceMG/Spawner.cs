@@ -5,7 +5,7 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
     [SerializeField] private Obstacle[] obstaclePrefabs;
-    public float obstacleSpawnTime = 2.0f;
+    public float obstacleSpawnTime = 1.5f;
 
     private float timeUntilSpawn = 0;
 
@@ -21,10 +21,11 @@ public class Spawner : MonoBehaviour
         timeUntilSpawn += Time.deltaTime;
         if (timeUntilSpawn > obstacleSpawnTime)
         {
-            timeUntilSpawn = Random.Range(0f, 1.5f);
+            timeUntilSpawn = Random.Range(0.5f, 1.25f);
             Obstacle spawnedObject = obstaclePrefabs[Random.Range(0, obstaclePrefabs.Length)];
             Vector3 spawnPostition = new(Random.Range(-9.5f, 9.5f), 6f, 0f);
-            Obstacle spawnedObstacle = Obstacle.ObstacleCalled(spawnedObject, spawnPostition, Quaternion.Euler(0, 0, Random.Range(0, 360)), Random.Range(0f, 1.5f));
+            Obstacle.ObstacleCalled(spawnedObject, spawnPostition, Quaternion.Euler(0, 0, Random.Range(0, 360)), Random.Range(2.5f, 7.5f));
+            if ((int)Random.Range(0, 5) == 0) Obstacle.ObstacleCalled(spawnedObject, spawnPostition, Quaternion.Euler(0, 0, Random.Range(0, 360)), Random.Range(2.5f, 7.5f));
         }
     }
 }
