@@ -4,11 +4,11 @@ using System.IO;
 using TMPro.Examples;
 using UnityEngine;
 
-public class ExoplanetDataParser : MonoBehaviour
+public class ExoplanetDataParser
 {
-    private string planetarySytemDataPath;
-    private string transitDataPath;
-
+    string planetarySytemDataPath = "Assets/Scripts/PlanetData/Data/PlanetarySystem.tab";
+    private string transitDataPath = "Assets/Scripts/PlanetData/Data/TransitData.tab";
+    
     public Dictionary<string, Dictionary<string, string>> GetParsedData()
     {
         Dictionary<string, Dictionary<string, string>> data = new();
@@ -22,6 +22,10 @@ public class ExoplanetDataParser : MonoBehaviour
                 continue;
             }
             string[] fields = line.Split("\t");
+            if (fields.Length == 0)
+            {
+                continue;
+            }
             if (fieldNames.Length == 0)
             {
                 fieldNames = fields;
@@ -29,8 +33,12 @@ public class ExoplanetDataParser : MonoBehaviour
             }
 
             string planetName = fields[0];
+            if (data.ContainsKey(planetName))
+            {
+                continue;
+            }
             data.Add(planetName, new());
-            for (int i = 1; i < fieldNames.Length; i++)
+            for (int i = 1; i < System.Math.Min(fieldNames.Length, fields.Length); i++)
             {
                 if (fieldNames[i].Contains("err") || fieldNames[i].Contains("lim"))
                 {
@@ -50,6 +58,10 @@ public class ExoplanetDataParser : MonoBehaviour
             }
 
             string[] fields = line.Split("\t");
+            if (fields.Length == 0)
+            {
+                continue;
+            }
             if (fieldNames.Length == 0)
             {
                 fieldNames = fields;
@@ -62,9 +74,13 @@ public class ExoplanetDataParser : MonoBehaviour
                 continue;
             }
 
-            for (int i = 1; i < fields.Length; i++)
+            for (int i = 1; i < System.Math.Min(fieldNames.Length, fields.Length); i++)
             {
                 if (fieldNames[i].Contains("err") || fieldNames[i].Contains("lim"))
+                {
+                    continue;
+                }
+                if (data[planetName].ContainsKey(fieldNames[i]))
                 {
                     continue;
                 }
