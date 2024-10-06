@@ -81,7 +81,7 @@ public class StarCounterMGManager : SingletonMonobehavior<StarCounterMGManager>
     void EndGame()
     {
         Debug.Log("Time's up! Game Over.");
-        GameManager.Instance?.OnStarCounterMGSucess();
+        GameManager.Instance?.OnStarCounterMGSucess(nbMoonsFound, nbStarsFound, nbPlanetsFound);
         GameManager.Instance?.ChangeScene(PossibleScenes.Ship);
     }
 

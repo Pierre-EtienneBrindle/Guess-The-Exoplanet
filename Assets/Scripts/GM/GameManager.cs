@@ -8,7 +8,19 @@ public class GameManager : SingletonMonobehavior<GameManager>
     bool isPaused = false;
     PossibleScenes currScene = PossibleScenes.Menu;
     ExoplanetData currPlanet = null;
-    bool hasSuceededCounterMinigame;
+
+    bool hasDoneCounterMinigame = false;
+    int nbMoonFound = 0;
+    int nbStarsFound = 0;
+    int nbPlanetsFound = 0;
+
+    bool hasDoneTemperatureReading = false;
+    float minTemp = float.MaxValue;
+    float maxTemp = float.MinValue;
+
+    bool hasDoneDistanceReading = false;
+    float distanceMeasured = float.MaxValue;
+
 
     //because I cannot TAB SceneManager.LoadScene()
     private void SLoad(string scene_name)
@@ -32,13 +44,13 @@ public class GameManager : SingletonMonobehavior<GameManager>
                 StartGame();
                 break;
             case PossibleScenes.StarDistanceMG:
-                SLoad("StarDistanceMG");
+                StartCoroutine(StartDistanceMG());
                 break;
             case PossibleScenes.StarCounterMG:
                 StartCoroutine(StartStarCounterMinigame());
                 break;
-            case PossibleScenes.MiniG3:
-                SLoad("");
+            case PossibleScenes.TemperatureMG:
+                StartCoroutine(StartTemperatureMinigame());
                 break;
             case PossibleScenes.MiniG4:
                 SLoad("");
@@ -54,9 +66,20 @@ public class GameManager : SingletonMonobehavior<GameManager>
         //ShipManager.Instance.SetPlanetPicture(generatedPictureFromCode);
     }
 
+    IEnumerator StartDistanceMG()
+    {
+        if(hasDoneDistanceReading || currPlanet.DistanceFromEarth == null)
+            yield break;
+        SLoad("StarDistanceMG");
+        yield return null;
+        yield return null;
+        yield return null;
+        StarDistanceMGManager.Instance.SetDistanceToReach(currPlanet.DistanceFromEarth.Value);
+    }
+
     IEnumerator StartStarCounterMinigame()
     {
-        if (hasSuceededCounterMinigame ||((currPlanet.NbMoon == null || currPlanet.NbMoon == 0) &&
+        if (hasDoneCounterMinigame ||((currPlanet.NbMoon == null || currPlanet.NbMoon == 0) &&
             (currPlanet.NbStars == null || currPlanet.NbStars == 0) &&
             (currPlanet.NbPlanet == null || currPlanet.NbPlanet == 0)))
             yield break;
@@ -67,6 +90,18 @@ public class GameManager : SingletonMonobehavior<GameManager>
         StarCounterMGManager.Instance.SetStartValues(currPlanet.NbMoon == null ? 0 : currPlanet.NbMoon.Value, 
                                                     currPlanet.NbStars == null ? 0 : currPlanet.NbStars.Value, 
                                                     currPlanet.NbPlanet == null ? 0 : currPlanet.NbPlanet.Value);
+    }
+
+    IEnumerator StartTemperatureMinigame()
+    {
+        if (currPlanet.Temperature == null || hasDoneTemperatureReading)
+            yield break;
+
+        SLoad("temperature scene");
+        yield return null;
+        yield return null; 
+        yield return null;
+        GameObject.FindWithTag("DataReceiver").GetComponent<retreiveData>().SetTemperature(currPlanet.Temperature.Value);
     }
 
     public void TogglePause()
@@ -94,9 +129,32 @@ public class GameManager : SingletonMonobehavior<GameManager>
         base.Awake();
     }
 
-    public void OnStarCounterMGSucess()
+    public void OnStarCounterMGSucess(int nbMoon, int nbStars, int nbPlanets)
     {
-        hasSuceededCounterMinigame = true;
+        if (hasDoneCounterMinigame)
+            return;
+        hasDoneCounterMinigame = true;
+        nbMoonFound = nbMoon;
+        nbStarsFound = nbStars;
+        nbPlanetsFound = nbPlanets;
+    }
+
+    public void OnTemperatureMGDone(float min, float max)
+    {
+        if (hasDoneTemperatureReading)
+            return;
+        hasDoneTemperatureReading = true;
+        minTemp = min;
+        maxTemp = max;
+    }
+
+    public void OnDistanceMGDone(float dist)
+    {
+        if (hasDoneDistanceReading)
+            return;
+        hasDoneDistanceReading = true;
+        distanceMeasured = dist;
+        SLoad("Ship");  
     }
 }
 
@@ -107,6 +165,6 @@ public enum PossibleScenes {
     Ship,
     StarDistanceMG,
     StarCounterMG,
-    MiniG3,
+    TemperatureMG,
     MiniG4
 }
