@@ -1,6 +1,7 @@
 using SingletonBehavior;
 using System.Collections.Generic;
 using TMPro;
+using TMPro.Examples;
 using UnityEngine;
 
 public class StarCounterMGManager : SingletonMonobehavior<StarCounterMGManager>
@@ -40,6 +41,7 @@ public class StarCounterMGManager : SingletonMonobehavior<StarCounterMGManager>
         nbMoonsMax = nbMoons;
         nbStarsMax = nbStars;
         nbPlanetsMax = nbPlanets;
+        
         UpdateScoreDisplay();
 
         timeRemaining = gameDuration; //Initialize timer 
