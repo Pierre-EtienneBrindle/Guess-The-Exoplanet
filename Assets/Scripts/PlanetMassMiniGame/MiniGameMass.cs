@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using static System.Math;
+using System;
 using TMPro;
 
 
@@ -20,6 +21,12 @@ public class MiniGameMass : MonoBehaviour
     float EARTHMASS = 5.972f * (float)Pow(10,24); // mass of earth
     readonly float G = 6.6743015f * (float)Pow(10,-17); // constante gravitationnel
     const float DIVISEUR =  667.4f*597.2f; // diviseur constant de la force gravité
+    
+
+    void CalculMass()
+    {
+        searchMass = (float)Math.Round(slider.value * distance*distance / DIVISEUR, 2);
+        textMass.text = $"Mass: {searchMass} earth";
 
     void Start()
     {
@@ -28,18 +35,21 @@ public class MiniGameMass : MonoBehaviour
         textThruster.text = "Thruster: 0 N";
         PLANETMASS = 15000f * EARTHMASS;
         THRUSTER = (int)Ceiling(Random.Range(1f, 3f)*G*PLANETMASS/distance/distance);
+        slider.onValueChanged.AddListener(delegate{CalculMass();});
     }
 
     void Bouger(float dt)
     {
         acc = -((float)Round(G * PLANETMASS / distance / distance - (float)slider.value*THRUSTER, 2));
         distance += (float)Round(acc/2*dt*dt, 2); // using it without velocity because it makes the game harder
+        float acc = -Math.Round(G * PlanetMass / distance / distance - slider.value*1000, 2);
+        distance += vitesse * dt + acc * dt * dt;
+        vitesse += acc * distance;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
         Bouger(Time.deltaTime);
         textDist.text = $"Distance: {(float)Round(distance, 3)} m";
         searchMass = (float)Round(slider.value*THRUSTER * distance*distance / G / EARTHMASS);
