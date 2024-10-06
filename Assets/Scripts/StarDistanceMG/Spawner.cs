@@ -19,7 +19,6 @@ public class Spawner : MonoBehaviour
     void Update()
     {
         timeUntilSpawn += Time.deltaTime;
-        Vector3 spawnPostition = new(Random.Range(-9.5f, 9.5f), 6f, -1f);
         if (timeUntilSpawn > obstacleSpawnTime)
         {
             timeUntilSpawn = Random.Range(0.5f, 1.25f);
@@ -28,11 +27,11 @@ public class Spawner : MonoBehaviour
                 chanceToMultipleSpawns += 0.001f;
             }
             else { 
-                Obstacle.ObstacleCalled(obstaclePrefabs[Random.Range(0, obstaclePrefabs.Length)], spawnPostition, Quaternion.Euler(0, 0, Random.Range(0, 360)), Random.Range(2.5f, 7.5f)); 
+                Obstacle.ObstacleCalled(obstaclePrefabs[Random.Range(0, obstaclePrefabs.Length)], new(Random.Range(-9.5f, 9.5f), 7f, -1f), Quaternion.Euler(0, 0, Random.Range(0, 360)), Random.Range(2.5f, 7.5f)); 
             }
-            Obstacle.ObstacleCalled(obstaclePrefabs[Random.Range(0, obstaclePrefabs.Length)], spawnPostition, Quaternion.Euler(0, 0, Random.Range(0, 360)), Random.Range(2.5f, 7.5f));
-            if ((int)Random.Range(0, 5) == 0) Obstacle.ObstacleCalled(obstaclePrefabs[Random.Range(0, obstaclePrefabs.Length)], spawnPostition, Quaternion.Euler(0, 0, Random.Range(0, 360)), Random.Range(2.5f, 7.5f));
-            if ((int)Random.Range(0, 1f - chanceToMultipleSpawns) == 0) Obstacle.ObstacleCalled(obstaclePrefabs[Random.Range(0, obstaclePrefabs.Length)], spawnPostition, Quaternion.Euler(0, 0, Random.Range(0, 360)), Random.Range(2.5f, 7.5f));
+            Obstacle.ObstacleCalled(obstaclePrefabs[Random.Range(0, obstaclePrefabs.Length)], new(Random.Range(-9.5f, 9.5f), 7f, -1f), Quaternion.Euler(0, 0, Random.Range(0, 360)), Random.Range(2.5f, 7.5f));
+            if ((int)Random.Range(0, 5) == 0) Obstacle.ObstacleCalled(obstaclePrefabs[Random.Range(0, obstaclePrefabs.Length)], new(Random.Range(-9.5f, 9.5f), 7f, -1f), Quaternion.Euler(0, 0, Random.Range(0, 360)), Random.Range(2.5f, 7.5f));
+            if ((int)Random.Range(0, 1f - chanceToMultipleSpawns) == 0) Obstacle.ObstacleCalled(obstaclePrefabs[Random.Range(0, obstaclePrefabs.Length)], new(Random.Range(-9.5f, 9.5f), 7f, -1f), Quaternion.Euler(0, 0, Random.Range(0, 360)), Random.Range(2.5f, 7.5f));
         }
     }
 }

@@ -6,17 +6,20 @@ using UnityEngine.UIElements;
 public class Asteroids : Obstacle
 {
     private Rigidbody2D rb;
+    private float angularSpeed; 
 
     private void Awake()
     {
+        angularSpeed = Random.Range(0, 5f);
         rb = GetComponent<Rigidbody2D>();
         rb.position = new Vector3(rb.position.x, rb.position.y, -1);
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         rb.velocity = new Vector2(0, -1f*(float)(this.speed));
+        rb.rotation += angularSpeed;
         if (this.transform.position.y <= -8)
         {
             Destroy(gameObject);

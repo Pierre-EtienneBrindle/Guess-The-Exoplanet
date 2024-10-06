@@ -22,10 +22,11 @@ public class Comet : Obstacle
         spaceShip = GameObject.FindWithTag("SpaceShip SDMG")?.transform;
         hypotenus = (float)Sqrt((Pow(spaceShip.position.x - this.transform.position.x, 2.0) + Pow(spaceShip.position.y - this.transform.position.y, 2)));
         angle = -1f*(float)Acos((spaceShip.position.x - this.transform.position.x) / hypotenus);
+        rb.rotation = 135f + angle*180/Mathf.PI;
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         rb.velocity = new Vector2((float)(this.speed * Cos(angle)), (float)(this.speed * Sin(angle)));
         if (transform.position.y <= -8)
