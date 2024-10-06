@@ -25,7 +25,7 @@ public class ExoplanetDataStorer : SingletonMonobehavior<ExoplanetDataStorer>
         Planets.Sort((a,b) => a.PlanetName.CompareTo(b.PlanetName));
     }
 
-    public  ExoplanetData GetRandomExoplanet()
+    public ExoplanetData GetRandomExoplanet()
         => Planets[Random.Range(0, Planets.Count)];
     
 }

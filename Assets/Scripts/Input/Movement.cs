@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml.Schema;
 using UnityEngine;
 using UnityEngine.Windows;
 
@@ -9,9 +10,12 @@ public class Movement : MonoBehaviour
 
     PlayerInput.SpaceShipActions SpaceShipInput;
 
-    Vector3 movement = new(0, 0, 0);
+    //Vector3 movement = new(0, 0, 0);
 
-    [SerializeField] float generalSpeed = 10f;
+    [SerializeField] float generalSpeedX;
+    [SerializeField] float generalSpeedY;
+    private readonly float limitX = 8.5f;
+    private readonly float limitY = 4.5f;
 
     private void Awake()
     {
@@ -27,10 +31,21 @@ public class Movement : MonoBehaviour
     void Update()
     {
         Vector2 input = SpaceShipInput.Movement.ReadValue<Vector2>();
+        Vector3 move = new(0f, 0f, 0f);
         //Vector3 speed = new(movement.x + input.x, movement.y + input.y, 0);
         //movement.x += input.x;
         //movement.y += input.y;
-        characterController.Move(Time.deltaTime * generalSpeed * input);
+        if (!(characterController.transform.position.x + (Time.deltaTime * input.x * generalSpeedX) <= -limitX || characterController.transform.position.x + (Time.deltaTime * input.x * generalSpeedX) >= limitX))
+        {
+            move.x = input.x * generalSpeedX;
+        }
+        if (!(characterController.transform.position.y + (Time.deltaTime * input.y * generalSpeedY) <= -limitY || characterController.transform.position.y + (Time.deltaTime * input.y * generalSpeedY) >= limitY)) 
+        {
+            move.y = input.y * generalSpeedY;
+        }
+
+        characterController.Move(Time.deltaTime * move);
+
         //Vector3 physicSpeed = createMovement(speed, 0.0f);
         //movement.x = physicSpeed.x;
         //movement.y = physicSpeed.y;
