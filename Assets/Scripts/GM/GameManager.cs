@@ -143,6 +143,7 @@ public class GameManager : SingletonMonobehavior<GameManager>
     {
         if (hasDoneTemperatureReading)
             return;
+        hasDoneTemperatureReading = true;
         minTemp = min;
         maxTemp = max;
     }
