@@ -10,7 +10,7 @@ public class RopeBehavior : MonoBehaviour
         
     }
     public void MoveRope(float x, float y, float time, float offset) {
-        float mySin = 0.001f * (Mathf.Sin((float)(2f * time + offset + y)));
+        float mySin = 0.001f * (Mathf.Sin((float)(2f * time + offset)));
         transform.Translate(mySin, 0, 0);
     }
 }
