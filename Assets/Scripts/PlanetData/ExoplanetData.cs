@@ -8,7 +8,7 @@ public class ExoplanetData
     public int? NbPlanet { get; private set; } = null;
     public int? NbMoon { get; private set; } = null;
     public float? RadiusInEarth { get; private set; } = null;
-    public float? Temperature { get; private set; } = null ;
+    public float? Temperature { get; private set; } = null;
     public float? MassInEarth { get; private set; } = null;
     public float? OrbitDurationInDays { get; private set; } = null;
     public float? DistanceFromEarth { get; private set; } = null;
@@ -34,25 +34,65 @@ public class ExoplanetData
                     NbMoon = int.Parse(keyValue.Value);
                     break;
                 case "pl_orbper":
-                    OrbitDurationInDays = float.Parse(keyValue.Value);
+                    OrbitDurationInDays = MyFloatParser(keyValue.Value);
                     break;
                 case "pl_rade":
-                    RadiusInEarth = float.Parse(keyValue.Value);
+                    RadiusInEarth = MyFloatParser(keyValue.Value);
                     break;
                 case "pl_masse":
-                    MassInEarth = float.Parse(keyValue.Value);
+                    MassInEarth = MyFloatParser(keyValue.Value);
                     break;
                 case "pl_eqt":
-                    Temperature = float.Parse(keyValue.Value);
+                    Temperature = MyFloatParser(keyValue.Value);
                     break;
                 case "sy_dist":
-                    DistanceFromEarth = float.Parse(keyValue.Value);
+                    DistanceFromEarth = MyFloatParser(keyValue.Value);
                     break;
                 default:
                     break;
             }
         }
     }
+
+    private static float MyFloatParser(string init)
+    {
+        float value = 0;
+        int i = 0;
+        int length = init.Length;
+
+        while (i < length && init[i] != '.')
+        {
+            value *= 10;
+            value += GetInt(init[i]);
+            ++i;
+        }
+        ++i;
+        float multiplier = 1 / 10f;
+        while (i < length)
+        {
+            value += multiplier * GetInt(init[i]);
+            ++i;
+            multiplier /= 10;
+        }
+        return value;
+    }
+    private static int GetInt(char val)
+    {
+        switch (val)
+        {
+            case '1': return 1;
+            case '2': return 2;
+            case '3': return 3;
+            case '4': return 4;
+            case '5': return 5;
+            case '6': return 6;
+            case '7': return 7;
+            case '8': return 8;
+            case '9': return 9;
+        }
+        return 0;
+    }
+
 
     public static bool operator==(ExoplanetData left, ExoplanetData right)
     {

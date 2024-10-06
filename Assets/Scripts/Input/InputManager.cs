@@ -27,9 +27,6 @@ public class InputManager : SingletonMonobehavior<InputManager>
     public PlayerInput.GeneralActionsActions GetGeneralActions()
         => controls.GeneralActions;
         
-    
-
-
     private void DisableAllInputs()
     {
         controls.SpaceShip.Disable();

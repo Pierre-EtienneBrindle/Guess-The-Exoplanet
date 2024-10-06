@@ -6,7 +6,7 @@ using UnityEngine.Windows;
 
 public class Movement : MonoBehaviour
 {
-    private CharacterController characterController;
+    private Rigidbody2D spaceShip;
 
     PlayerInput.SpaceShipActions SpaceShipInput;
 
@@ -19,7 +19,7 @@ public class Movement : MonoBehaviour
 
     private void Awake()
     {
-        characterController = GetComponent<CharacterController>();
+        spaceShip = GetComponent<Rigidbody2D>();
     }
     // Start is called before the first frame update
     void Start()
@@ -28,23 +28,23 @@ public class Movement : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         Vector2 input = SpaceShipInput.Movement.ReadValue<Vector2>();
         Vector3 move = new(0f, 0f, 0f);
         //Vector3 speed = new(movement.x + input.x, movement.y + input.y, 0);
         //movement.x += input.x;
         //movement.y += input.y;
-        if (!(characterController.transform.position.x + (Time.deltaTime * input.x * generalSpeedX) <= -limitX || characterController.transform.position.x + (Time.deltaTime * input.x * generalSpeedX) >= limitX))
+        if (!(spaceShip.transform.position.x + (Time.deltaTime * input.x * generalSpeedX) <= -limitX || spaceShip.transform.position.x + (Time.deltaTime * input.x * generalSpeedX) >= limitX))
         {
             move.x = input.x * generalSpeedX;
         }
-        if (!(characterController.transform.position.y + (Time.deltaTime * input.y * generalSpeedY) <= -limitY || characterController.transform.position.y + (Time.deltaTime * input.y * generalSpeedY) >= limitY)) 
+        if (!(spaceShip.transform.position.y + (Time.deltaTime * input.y * generalSpeedY) <= -limitY || spaceShip.transform.position.y + (Time.deltaTime * input.y * generalSpeedY) >= limitY)) 
         {
             move.y = input.y * generalSpeedY;
         }
 
-        characterController.Move(Time.deltaTime * move);
+        spaceShip.velocity = new Vector3(move.x, move.y, 0);
 
         //Vector3 physicSpeed = createMovement(speed, 0.0f);
         //movement.x = physicSpeed.x;
@@ -56,9 +56,9 @@ public class Movement : MonoBehaviour
 
     }
 
-    // Fonction qui gere le mouvement sous forme de speed
-    // Vector3 createMovement(Vector3 inp, float antiForce) {
-    //    Vector3 spd = new(inp.x * (antiForce/100.0f), inp.y * (antiForce / 100.0f), 0);
-    //    return spd;
-    //}
-}
+        // Fonction qui gere le mouvement sous forme de speed
+        // Vector3 createMovement(Vector3 inp, float antiForce) {
+        //    Vector3 spd = new(inp.x * (antiForce/100.0f), inp.y * (antiForce / 100.0f), 0);
+        //    return spd;
+        //}+-
+    }
