@@ -29,8 +29,8 @@ public class Distance : MonoBehaviour
         {
             // Should be called only ONCE
             distance += error;
-            Debug.Log(distance + error);
-            Debug.Log(distanceToReach);
+            // Debug.Log(distance + error);
+            // Debug.Log(distanceToReach);
         }
         if (redColor > 0)
         {

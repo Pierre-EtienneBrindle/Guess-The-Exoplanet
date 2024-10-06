@@ -4,18 +4,17 @@ using UnityEngine ;
 
 public class RopeSegment : RopeBehavior
 {
-    [SerializeField] private float posY; // Position Y initiale
+    [SerializeField] private float posX; // Position X initiale
+    [SerializeField] private float posY;
     private float time = 0;
-
-    private void Start()
-    {
-        posY = transform.position.y;
-    }
+    [SerializeField] private float offset;
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        MoveRope(posY, time);
+        posX = transform.position.x;
+        posY = transform.position.y;
+        MoveRope(posX, posY, time, offset);
         time += Time.deltaTime;
     }
 }
