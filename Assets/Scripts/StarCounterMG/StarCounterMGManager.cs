@@ -88,7 +88,7 @@ public class StarCounterMGManager : SingletonMonobehavior<StarCounterMGManager>
 
         if(nbMoonsFound >= nbMoonsMax && nbPlanetsFound == nbPlanetsMax && nbStarsFound == nbStarsMax)
         {
-            GameManager.Instance?.OnStarCounterMGSucess();
+            //GameManager.Instance?.OnStarCounterMGSucess();
             GameManager.Instance?.ChangeScene(PossibleScenes.Ship);
         }
     }
