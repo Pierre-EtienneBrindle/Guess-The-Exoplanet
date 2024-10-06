@@ -4,7 +4,8 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - ClickableObject
+  - SpaceShip SDMG
+  - Obstacle SDMG
   layers:
   - Default
   - TransparentFX
@@ -12,6 +13,8 @@ TagManager:
   - 
   - Water
   - UI
+  - Obstacle
+  - SpaceShip
   - 
   - 
   - 
@@ -35,10 +38,11 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
-  - 
+  - BG
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: 1
+    uniqueID: 1896879601
     locked: 0

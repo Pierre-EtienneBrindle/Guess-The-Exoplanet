@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml.Schema;
 using UnityEngine;
 using UnityEngine.Windows;
 
@@ -9,7 +10,12 @@ public class Movement : MonoBehaviour
 
     PlayerInput.SpaceShipActions SpaceShipInput;
 
-    public float generalSpeed = 10;
+    //Vector3 movement = new(0, 0, 0);
+
+    [SerializeField] float generalSpeedX;
+    [SerializeField] float generalSpeedY;
+    private readonly float limitX = 8.5f;
+    private readonly float limitY = 4.5f;
 
     private void Awake()
     {
@@ -25,9 +31,24 @@ public class Movement : MonoBehaviour
     void Update()
     {
         Vector2 input = SpaceShipInput.Movement.ReadValue<Vector2>();
-        Vector3 speed = new(input.x, input.y, 0);
+        Vector3 move = new(0f, 0f, 0f);
+        //Vector3 speed = new(movement.x + input.x, movement.y + input.y, 0);
+        //movement.x += input.x;
+        //movement.y += input.y;
+        if (!(characterController.transform.position.x + (Time.deltaTime * input.x * generalSpeedX) <= -limitX || characterController.transform.position.x + (Time.deltaTime * input.x * generalSpeedX) >= limitX))
+        {
+            move.x = input.x * generalSpeedX;
+        }
+        if (!(characterController.transform.position.y + (Time.deltaTime * input.y * generalSpeedY) <= -limitY || characterController.transform.position.y + (Time.deltaTime * input.y * generalSpeedY) >= limitY)) 
+        {
+            move.y = input.y * generalSpeedY;
+        }
 
-        characterController.Move(Time.deltaTime * generalSpeed * speed);
+        characterController.Move(Time.deltaTime * move);
+
+        //Vector3 physicSpeed = createMovement(speed, 0.0f);
+        //movement.x = physicSpeed.x;
+        //movement.y = physicSpeed.y;
     }
 
     private void OnDisable()
@@ -35,16 +56,9 @@ public class Movement : MonoBehaviour
 
     }
 
-    Vector3 spacePhysics(Vector3 speed) {
-        Vector3 spaceSpeed = new(0, 0, 0);
-        return spaceSpeed;
-    }
-
-    Vector3 createMovement(Vector2 inp, float genSpeed, float antiForce) {
-        
-        Vector3 spaceMovement = spacePhysics(inp);
-        //Debug.Log(speed.x);
-        Debug.Log(spaceMovement.x);
-        return spaceMovement;
-    }
+    // Fonction qui gere le mouvement sous forme de speed
+    // Vector3 createMovement(Vector3 inp, float antiForce) {
+    //    Vector3 spd = new(inp.x * (antiForce/100.0f), inp.y * (antiForce / 100.0f), 0);
+    //    return spd;
+    //}
 }
