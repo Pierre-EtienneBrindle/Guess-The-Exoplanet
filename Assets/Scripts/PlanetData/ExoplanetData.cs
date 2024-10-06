@@ -76,7 +76,6 @@ public class ExoplanetData
         }
         return value;
     }
-
     private static int GetInt(char val)
     {
         switch (val)
@@ -93,7 +92,7 @@ public class ExoplanetData
         }
         return 0;
     }
-}
+
 
     public static bool operator==(ExoplanetData left, ExoplanetData right)
     {
