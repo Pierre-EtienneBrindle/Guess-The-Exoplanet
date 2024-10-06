@@ -16,7 +16,7 @@ public class Spawner : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         timeUntilSpawn += Time.deltaTime;
         if (timeUntilSpawn > obstacleSpawnTime)
