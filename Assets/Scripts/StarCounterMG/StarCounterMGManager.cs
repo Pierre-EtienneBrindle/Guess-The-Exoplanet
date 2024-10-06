@@ -14,7 +14,12 @@ public class StarCounterMGManager : SingletonMonobehavior<StarCounterMGManager>
     [SerializeField] TMP_Text moonsText; // Reference to your TextMeshPro text component for moons clicked
     [SerializeField] TMP_Text planetsText; // Reference to your TextMeshPro text component for planets clicked
 
+
+    [SerializeField] TMP_Text timerText;
+    [SerializeField] float gameDuration = 60f; // duartion of the game. 
+    
     bool wasSet = false;
+    bool isDoneReading = false;
     int nbMoonsMax;
     int nbStarsMax;
     int nbPlanetsMax;
@@ -23,16 +28,21 @@ public class StarCounterMGManager : SingletonMonobehavior<StarCounterMGManager>
     int nbStarsFound = 0;
     int nbPlanetsFound = 0;
 
+    float timeRemaining; // timer variable 
+
+   
     public void SetStartValues(int nbMoons, int nbStars, int nbPlanets)
     {
         Debug.Log($"M : {nbMoons}  S : {nbStars}  P : {nbPlanets}");
-        if (wasSet)
+        if (wasSet )
             return;
         wasSet = true;
         nbMoonsMax = nbMoons;
         nbStarsMax = nbStars;
         nbPlanetsMax = nbPlanets;
         UpdateScoreDisplay();
+
+        timeRemaining = gameDuration; //Initialize timer 
 
         List<(Vector2, float)> spawned = new List<(Vector2, float)>(nbPlanets + nbStars + nbMoons);
         for (int i = 0; i < nbStars; i++)
@@ -42,6 +52,40 @@ public class StarCounterMGManager : SingletonMonobehavior<StarCounterMGManager>
         for(int i = 0; i < nbPlanets; i++)
             SpawnAnAstralStructure(PlanetPrefab, spawned);
     }
+
+    public void OnRead()
+    {
+        isDoneReading = true;
+    }
+    
+    void Update()
+    {
+        if (isDoneReading && wasSet && timeRemaining > 0)
+        {
+            timeRemaining -= Time.deltaTime;
+            UpdateTimerDisplay(); 
+
+            if (timeRemaining <= 0)
+            {
+                timeRemaining = 0;
+                EndGame(); 
+            }
+        }
+    }
+
+    void UpdateTimerDisplay()
+    {
+        timerText.text = $"Time Left: {Mathf.Ceil(timeRemaining)}s";
+    }
+
+    void EndGame()
+    {
+        Debug.Log("Time's up! Game Over.");
+        GameManager.Instance?.OnStarCounterMGSucess();
+        GameManager.Instance?.ChangeScene(PossibleScenes.Ship);
+    }
+
+
 
     void SpawnAnAstralStructure(AstralStructure prefab, List<(Vector2, float)> spawned)
     {
@@ -88,8 +132,7 @@ public class StarCounterMGManager : SingletonMonobehavior<StarCounterMGManager>
 
         if(nbMoonsFound >= nbMoonsMax && nbPlanetsFound == nbPlanetsMax && nbStarsFound == nbStarsMax)
         {
-            GameManager.Instance?.OnStarCounterMGSucess();
-            GameManager.Instance?.ChangeScene(PossibleScenes.Ship);
+            EndGame();
         }
     }
 
