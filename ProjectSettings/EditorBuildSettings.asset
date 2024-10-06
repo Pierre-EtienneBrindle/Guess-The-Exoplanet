@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/StarDistanceMG.unity
     guid: 2969e3a3261d7ed4c95f881602306876
+  - enabled: 1
+    path: Assets/Scenes/StarCounterMG.unity
+    guid: 3975b6b84684f114099226d110ccf460
   m_configObjects: {}

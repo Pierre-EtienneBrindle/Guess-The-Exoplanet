@@ -1,12 +1,14 @@
 using UnityEngine;
 using SingletonBehavior;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class GameManager : SingletonMonobehavior<GameManager>
 {
     bool isPaused = false;
     PossibleScenes currScene = PossibleScenes.Menu;
     ExoplanetData currPlanet = null;
+    bool hasSuceededCounterMinigame;
 
     //because I cannot TAB SceneManager.LoadScene()
     private void SLoad(string scene_name)
@@ -32,8 +34,8 @@ public class GameManager : SingletonMonobehavior<GameManager>
             case PossibleScenes.StarDistanceMG:
                 SLoad("StarDistanceMG");
                 break;
-            case PossibleScenes.MiniG2:
-                SLoad("");
+            case PossibleScenes.StarCounterMG:
+                StartCoroutine(StartStarCounterMinigame());
                 break;
             case PossibleScenes.MiniG3:
                 SLoad("");
@@ -48,7 +50,23 @@ public class GameManager : SingletonMonobehavior<GameManager>
     {
         SLoad("Ship");
         currPlanet = ExoplanetDataStorer.Instance.GetRandomExoplanet();
+        Debug.Log(currPlanet.PlanetName);
         //ShipManager.Instance.SetPlanetPicture(generatedPictureFromCode);
+    }
+
+    IEnumerator StartStarCounterMinigame()
+    {
+        if (hasSuceededCounterMinigame ||((currPlanet.NbMoon == null || currPlanet.NbMoon == 0) &&
+            (currPlanet.NbStars == null || currPlanet.NbStars == 0) &&
+            (currPlanet.NbPlanet == null || currPlanet.NbPlanet == 0)))
+            yield break;
+        SLoad("StarCounterMG");
+        yield return null;
+        yield return null;
+        yield return null;
+        StarCounterMGManager.Instance.SetStartValues(currPlanet.NbMoon == null ? 0 : currPlanet.NbMoon.Value, 
+                                                    currPlanet.NbStars == null ? 0 : currPlanet.NbStars.Value, 
+                                                    currPlanet.NbPlanet == null ? 0 : currPlanet.NbPlanet.Value);
     }
 
     public void TogglePause()
@@ -75,6 +93,11 @@ public class GameManager : SingletonMonobehavior<GameManager>
     {
         base.Awake();
     }
+
+    public void OnStarCounterMGSucess()
+    {
+        hasSuceededCounterMinigame = true;
+    }
 }
 
 // All possible reference for button to change the game state
@@ -83,7 +106,7 @@ public enum PossibleScenes {
     Credit,
     Ship,
     StarDistanceMG,
-    MiniG2,
+    StarCounterMG,
     MiniG3,
     MiniG4
 }

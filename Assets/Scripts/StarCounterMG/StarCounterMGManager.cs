@@ -25,6 +25,7 @@ public class StarCounterMGManager : SingletonMonobehavior<StarCounterMGManager>
 
     public void SetStartValues(int nbMoons, int nbStars, int nbPlanets)
     {
+        Debug.Log($"M : {nbMoons}  S : {nbStars}  P : {nbPlanets}");
         if (wasSet)
             return;
         wasSet = true;
@@ -46,7 +47,8 @@ public class StarCounterMGManager : SingletonMonobehavior<StarCounterMGManager>
     {
         bool isValide = false;
         Vector2 newPos = Vector2.zero;
-        while (!isValide)
+        const int MAX_NB_TRY = 10000;
+        for(int i = 0; (i <= MAX_NB_TRY) && !isValide; i++)
         {
             isValide = true;
             float xCord = Random.Range(spawnBounds.min.x + prefab.Radius, spawnBounds.max.x - prefab.Radius);
@@ -71,8 +73,7 @@ public class StarCounterMGManager : SingletonMonobehavior<StarCounterMGManager>
         base.Awake();
         UpdateScoreDisplay();
         BoxCollider2D box = GetComponent<BoxCollider2D>();
-        spawnBounds = box.bounds;
-        Destroy(box);
+        spawnBounds = box.bounds;   
     }
 
     public void OnAstralObjectDetected(AstralStructureType type)
@@ -87,7 +88,8 @@ public class StarCounterMGManager : SingletonMonobehavior<StarCounterMGManager>
 
         if(nbMoonsFound >= nbMoonsMax && nbPlanetsFound == nbPlanetsMax && nbStarsFound == nbStarsMax)
         {
-
+            GameManager.Instance?.OnStarCounterMGSucess();
+            GameManager.Instance?.ChangeScene(PossibleScenes.Ship);
         }
     }
 
