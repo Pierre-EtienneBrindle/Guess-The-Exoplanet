@@ -2,17 +2,17 @@ using System.Collections.Generic;
 
 public class ExoplanetData
 {
-    public string PlanetName { get; private set; }
-    public string SystemName { get; private set; }
-    public int NbStars { get; private set; }
-    public int NbPlanet { get; private set; }
-    public float PlanetRadius { get; private set; }
-    public float Temperature { get; private set; }
-    public float MassInEarth { get; private set; }
-    public float OrbitDurationInDays { get; private set; }
-    public float DistanceFromEarth { get; private set; }
-    public DiscoveryMethodOptions DiscoveryMethod { get; private set; }
-    public float TransitDuration { get; private set; }
+    public string PlanetName { get; private set; } = null;
+    public string SystemName { get; private set; } = null;
+    public int? NbStars { get; private set; } = null;
+    public int? NbPlanet { get; private set; } = null;
+    public int? NbMoon { get; private set; } = null;
+    public float? RadiusInEarth { get; private set; } = null;
+    public float? Temperature { get; private set; } = null ;
+    public float? MassInEarth { get; private set; } = null;
+    public float? OrbitDurationInDays { get; private set; } = null;
+    public float? DistanceFromEarth { get; private set; } = null;
+    public float? TransitDuration { get; private set; } = null;
 
     public ExoplanetData(string name, Dictionary<string, string> keyValuePairs)
     {
@@ -24,7 +24,30 @@ public class ExoplanetData
                 case "hostname":
                     SystemName = keyValue.Value;
                     break;
-
+                case "sy_snum":
+                    NbStars = int.Parse(keyValue.Value);
+                    break;
+                case "sy_pnum":
+                    NbPlanet = int.Parse(keyValue.Value);
+                    break;
+                case "sy_mnum":
+                    NbMoon = int.Parse(keyValue.Value);
+                    break;
+                case "pl_orbper":
+                    OrbitDurationInDays = float.Parse(keyValue.Value);
+                    break;
+                case "pl_rade":
+                    RadiusInEarth = float.Parse(keyValue.Value);
+                    break;
+                case "pl_masse":
+                    MassInEarth = float.Parse(keyValue.Value);
+                    break;
+                case "pl_eqt":
+                    Temperature = float.Parse(keyValue.Value);
+                    break;
+                case "sy_dist":
+                    DistanceFromEarth = float.Parse(keyValue.Value);
+                    break;
                 default:
                     break;
             }

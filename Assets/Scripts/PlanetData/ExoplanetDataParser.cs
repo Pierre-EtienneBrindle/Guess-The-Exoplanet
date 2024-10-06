@@ -33,7 +33,12 @@ public static class ExoplanetDataParser
             
             data.Add(planetName, new());
             for (int i = 1; i < System.Math.Min(fieldNames.Length, fields.Length); i++)
+            {
+                if (string.IsNullOrEmpty(fields[i]))
+                    continue;
+
                 data[planetName].Add(fieldNames[i], fields[i]);
+            }
             
         }
 
@@ -62,7 +67,7 @@ public static class ExoplanetDataParser
 
                 for (int i = 1; i < System.Math.Min(fieldNames.Length, fields.Length); i++)
                 {   
-                    if (data[planetName].ContainsKey(fieldNames[i]))
+                    if (data[planetName].ContainsKey(fieldNames[i]) || string.IsNullOrEmpty(fields[i]))
                         continue;
                     
                     data[planetName].Add(fieldNames[i], fields[i]);

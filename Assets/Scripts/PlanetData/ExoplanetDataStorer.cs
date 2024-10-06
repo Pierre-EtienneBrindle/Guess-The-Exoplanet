@@ -1,14 +1,13 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using SingletonBehavior;
-using System;
 
 public class ExoplanetDataStorer : SingletonMonobehavior<ExoplanetDataStorer>
 {
     [SerializeField] string planetSystemFn;
     [SerializeField] string[] otherFn;
     const string PATH_PREFIX = "Assets/Scripts/PlanetData/Data/";
+    public SortedList<string, ExoplanetData> Planets { get; private set; }
     protected override void Awake()
     {
         base.Awake();
@@ -20,11 +19,8 @@ public class ExoplanetDataStorer : SingletonMonobehavior<ExoplanetDataStorer>
             otherPath[i] = PATH_PREFIX + otherFn[i];
 
         Dictionary<string, Dictionary<string, string>> parsed = ExoplanetDataParser.GetParsedData(planetSysPath, otherPath);
-
-
-        foreach(KeyValuePair<string, Dictionary<string,string>> planet in parsed)
-        {
-            
-        }
+        Planets = new SortedList<string, ExoplanetData>();
+        foreach (KeyValuePair<string, Dictionary<string,string>> planet in parsed)
+            Planets.Add(planet.Key, new ExoplanetData(planet.Key, planet.Value));
     }
 }
