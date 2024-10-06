@@ -13,6 +13,7 @@ public class Comet : Obstacle
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        rb.position = new Vector3(rb.position.x, rb.position.y, -1);
     }
 
     private void Start()
@@ -27,7 +28,9 @@ public class Comet : Obstacle
     void Update()
     {
         rb.velocity = new Vector2((float)(this.speed * Cos(angle)), (float)(this.speed * Sin(angle)));
-        if (transform.position.y <= -8) { 
-            Destroy(this); }
+        if (transform.position.y <= -8)
+        {
+            Destroy(gameObject);
+        }
     }
 }

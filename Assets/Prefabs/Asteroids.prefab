@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -9149828077849316103}
   m_Layer: 6
   m_Name: Asteroids
-  m_TagString: Untagged
+  m_TagString: Obstacle SDMG
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -144,7 +144,7 @@ Rigidbody2D:
     m_Bits: 128
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 2147483767
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0

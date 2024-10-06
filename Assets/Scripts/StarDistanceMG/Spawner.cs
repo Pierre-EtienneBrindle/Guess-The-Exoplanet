@@ -23,7 +23,7 @@ public class Spawner : MonoBehaviour
         {
             timeUntilSpawn = Random.Range(0.5f, 1.25f);
             Obstacle spawnedObject = obstaclePrefabs[Random.Range(0, obstaclePrefabs.Length)];
-            Vector3 spawnPostition = new(Random.Range(-9.5f, 9.5f), 6f, 0f);
+            Vector3 spawnPostition = new(Random.Range(-9.5f, 9.5f), 6f, -1f);
             Obstacle.ObstacleCalled(spawnedObject, spawnPostition, Quaternion.Euler(0, 0, Random.Range(0, 360)), Random.Range(2.5f, 7.5f));
             if ((int)Random.Range(0, 5) == 0) Obstacle.ObstacleCalled(spawnedObject, spawnPostition, Quaternion.Euler(0, 0, Random.Range(0, 360)), Random.Range(2.5f, 7.5f));
         }
