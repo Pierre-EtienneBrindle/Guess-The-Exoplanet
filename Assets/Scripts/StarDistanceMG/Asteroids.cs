@@ -22,11 +22,11 @@ public class Asteroids : Obstacle
             Destroy(gameObject);
         }
     }
-//    private void OnTriggerEnter2D(Collider2D obstacle)
-//    {
-//        if (obstacle.transform.CompareTag("SpaceShip SDMG"))
-//        {
-//            Debug.Log("WTF IS TRIGGER > ");
-//        }
-//    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        // SPACESHIP TOUCHÉ RAAAAAH GAME OVER -1 VIE JSP MOI
+        if (collision.collider.CompareTag("SpaceShip SDMG"))
+            Destroy(gameObject);
+    }
 }

@@ -33,4 +33,10 @@ public class Comet : Obstacle
             Destroy(gameObject);
         }
     }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        // SPACESHIP TOUCHÉ RAAAAAH GAME OVER -1 VIE JSP MOI
+        if (collision.collider.CompareTag("SpaceShip SDMG"))
+        Destroy(gameObject);
+    }
 }
