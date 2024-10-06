@@ -7,7 +7,7 @@ class FilterManager
 
     public FilterManager()
     {
-        Filters = new List<Filter>();   
+        Filters = new List<Filter>();
     }
 
     public void RemoveFilter(int index)
@@ -27,7 +27,7 @@ class FilterManager
 
         for (int i = 0; i < Filters.Count; i++)
         {
-            bitArray = bitArray.Xor(Filters[i].GetFilterBitArray());
+            bitArray = bitArray.And(Filters[i].GetFilterBitArray());
         }
 
         List<ExoplanetData> outList = new();

@@ -59,7 +59,7 @@ class Filter
     private BitArray output;
     private bool outputComputed;
 
-    Filter(FilterType filterType, FilterOrdering ordering, float limit)
+    public Filter(FilterType filterType, FilterOrdering ordering, float limit)
     {
         this.type = filterType;
         this.ordering = ordering;
@@ -128,7 +128,11 @@ class Filter
         output.SetAll(true);
         for (int i = 0; i < ExoplanetDataStorer.Instance.Planets.Count; i++)
         {
-            if (propertyGetterLambda(ExoplanetDataStorer.Instance.Planets[i]) != null)
+            if (propertyGetterLambda(ExoplanetDataStorer.Instance.Planets[i]) == null)
+            {
+                output[i] = false;
+            }
+            else
             {
                 output[i] = orderingLambda(propertyGetterLambda(ExoplanetDataStorer.Instance.Planets[i]).Value, limit);
             }
