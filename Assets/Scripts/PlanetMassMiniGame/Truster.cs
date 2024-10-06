@@ -13,7 +13,7 @@ public class Truster : MonoBehaviour
 
     public void ModText()
     {
-        text.text = $"Thruster: {Round(slider.value*60, 2)} kN";
+        text.text = $"Thruster: {Round(slider.value*100, 3)} N";
     }
     void Start()
     {
