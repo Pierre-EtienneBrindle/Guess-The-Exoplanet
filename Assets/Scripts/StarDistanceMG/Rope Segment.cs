@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine ;
 
 public class RopeSegment : RopeBehavior
@@ -12,9 +10,7 @@ public class RopeSegment : RopeBehavior
     // Update is called once per frame
     void FixedUpdate()
     {
-        posX = transform.position.x;
-        posY = transform.position.y;
-        MoveRope(posX, posY, time, offset);
+        MoveRope(time, offset);
         time += Time.deltaTime;
     }
 }

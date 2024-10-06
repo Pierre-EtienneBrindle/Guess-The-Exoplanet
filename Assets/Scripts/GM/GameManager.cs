@@ -18,6 +18,10 @@ public class GameManager : SingletonMonobehavior<GameManager>
     float minTemp = float.MaxValue;
     float maxTemp = float.MinValue;
 
+    bool hasDoneDistanceReading = false;
+    float distanceMeasured = float.MaxValue;
+
+
     //because I cannot TAB SceneManager.LoadScene()
     private void SLoad(string scene_name)
     {
@@ -40,13 +44,13 @@ public class GameManager : SingletonMonobehavior<GameManager>
                 StartGame();
                 break;
             case PossibleScenes.StarDistanceMG:
-                SLoad("StarDistanceMG");
+                StartCoroutine(StartDistanceMG());
                 break;
             case PossibleScenes.StarCounterMG:
                 StartCoroutine(StartStarCounterMinigame());
                 break;
             case PossibleScenes.TemperatureMG:
-                SLoad("");
+                StartCoroutine(StartTemperatureMinigame());
                 break;
             case PossibleScenes.MiniG4:
                 SLoad("");
@@ -60,6 +64,17 @@ public class GameManager : SingletonMonobehavior<GameManager>
         currPlanet = ExoplanetDataStorer.Instance.GetRandomExoplanet();
         Debug.Log(currPlanet.PlanetName);
         //ShipManager.Instance.SetPlanetPicture(generatedPictureFromCode);
+    }
+
+    IEnumerator StartDistanceMG()
+    {
+        if(hasDoneDistanceReading || currPlanet.DistanceFromEarth == null)
+            yield break;
+        SLoad("StarDistanceMG");
+        yield return null;
+        yield return null;
+        yield return null;
+        StarDistanceMGManager.Instance.SetDistanceToReach(currPlanet.DistanceFromEarth.Value);
     }
 
     IEnumerator StartStarCounterMinigame()
@@ -79,7 +94,7 @@ public class GameManager : SingletonMonobehavior<GameManager>
 
     IEnumerator StartTemperatureMinigame()
     {
-        if (currPlanet.Temperature == null)
+        if (currPlanet.Temperature == null || hasDoneTemperatureReading)
             yield break;
 
         SLoad("temperature scene");
@@ -130,6 +145,15 @@ public class GameManager : SingletonMonobehavior<GameManager>
             return;
         minTemp = min;
         maxTemp = max;
+    }
+
+    public void OnDistanceMGDone(float dist)
+    {
+        if (hasDoneDistanceReading)
+            return;
+        hasDoneDistanceReading = true;
+        distanceMeasured = dist;
+        SLoad("Ship");  
     }
 }
 
