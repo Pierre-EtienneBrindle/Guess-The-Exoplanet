@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using static System.Math;
 
@@ -7,6 +8,7 @@ public class Comet : Obstacle
 {
     private Transform spaceShip;
     private Rigidbody2D rb;
+    private static Distance text;
     [SerializeField] private float angle;
     [SerializeField] private float hypotenus;
 
@@ -38,6 +40,14 @@ public class Comet : Obstacle
     {
         // SPACESHIP TOUCHÉ RAAAAAH GAME OVER -1 VIE JSP MOI
         if (collision.collider.CompareTag("SpaceShip SDMG"))
-        Destroy(gameObject);
+        {
+            Destroy(gameObject);
+            if (text == null)
+            {
+                text = GameObject.FindWithTag("Distance").GetComponent<Distance>();
+            }
+            text.redColor = 255;
+            text.error += text.incrementation * 50f * Random.Range(1, 2); // 1 sec of penalty
+        }
     }
 }

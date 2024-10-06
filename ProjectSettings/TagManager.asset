@@ -6,6 +6,7 @@ TagManager:
   tags:
   - SpaceShip SDMG
   - Obstacle SDMG
+  - Distance
   layers:
   - Default
   - TransparentFX

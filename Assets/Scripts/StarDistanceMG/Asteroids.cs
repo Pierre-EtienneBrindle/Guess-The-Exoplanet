@@ -6,7 +6,8 @@ using UnityEngine.UIElements;
 public class Asteroids : Obstacle
 {
     private Rigidbody2D rb;
-    private float angularSpeed; 
+    private Distance text;
+    private float angularSpeed;
 
     private void Awake()
     {
@@ -29,7 +30,14 @@ public class Asteroids : Obstacle
     private void OnCollisionEnter2D(Collision2D collision)
     {
         // SPACESHIP TOUCHÉ RAAAAAH GAME OVER -1 VIE JSP MOI
-        if (collision.collider.CompareTag("SpaceShip SDMG"))
+        if (collision.collider.CompareTag("SpaceShip SDMG")) { 
             Destroy(gameObject);
+            if (text == null)
+            {
+                text = GameObject.FindWithTag("Distance").GetComponent<Distance>();
+            }
+            text.redColor = 255;
+            text.error += text.incrementation * 100f * Random.Range(1,2); // 2 sec of penalty
+        }
     }
 }
