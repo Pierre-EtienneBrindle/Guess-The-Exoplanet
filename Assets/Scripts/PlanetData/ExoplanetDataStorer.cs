@@ -7,7 +7,7 @@ public class ExoplanetDataStorer : SingletonMonobehavior<ExoplanetDataStorer>
     [SerializeField] string planetSystemFn;
     [SerializeField] string[] otherFn;
     const string PATH_PREFIX = "Assets/Scripts/PlanetData/Data/";
-    public SortedList<string, ExoplanetData> Planets { get; private set; }
+    public List <ExoplanetData> Planets { get; private set; }
     protected override void Awake()
     {
         base.Awake();
@@ -19,12 +19,13 @@ public class ExoplanetDataStorer : SingletonMonobehavior<ExoplanetDataStorer>
             otherPath[i] = PATH_PREFIX + otherFn[i];
 
         Dictionary<string, Dictionary<string, string>> parsed = ExoplanetDataParser.GetParsedData(planetSysPath, otherPath);
-        Planets = new SortedList<string, ExoplanetData>();
+        Planets = new List<ExoplanetData>();
         foreach (KeyValuePair<string, Dictionary<string,string>> planet in parsed)
-            Planets.Add(planet.Key, new ExoplanetData(planet.Key, planet.Value));
+            Planets.Add(new ExoplanetData(planet.Key, planet.Value));
+        Planets.Sort((a,b) => a.PlanetName.CompareTo(b.PlanetName));
     }
 
-    public ExoplanetData GetRandomExoplanet()
-        => Planets[Planets.Keys[Random.Range(0, Planets.Count)]];
+    public  ExoplanetData GetRandomExoplanet()
+        => Planets[Random.Range(0, Planets.Count)];
     
 }
