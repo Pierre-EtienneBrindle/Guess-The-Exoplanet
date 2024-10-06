@@ -1,20 +1,35 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using SingletonBehavior;
 
 public class InputManager : SingletonMonobehavior<InputManager>
 {
-    PlayerControl controls;
+    PlayerInput controls;
     protected override void Awake()
     {
         base.Awake();   
-        controls = new PlayerControl();
+        controls = new PlayerInput();
+        controls.GeneralActions.Enable();
     }
 
-    public PlayerControl.SpaceShipActions GetSpaceShipActions()
+    public PlayerInput.SpaceShipActions GetSpaceShipActions()
     {
+        DisableAllInputs();
         controls.SpaceShip.Enable();
         return controls.SpaceShip;
+    }
+
+    public PlayerInput.LimitedSpaceShipActions GetLimitedSpaceShipActions()
+    {
+        DisableAllInputs();
+        controls.LimitedSpaceShip.Enable();
+        return controls.LimitedSpaceShip;
+    }
+
+    public PlayerInput.GeneralActionsActions GetGeneralActions()
+        => controls.GeneralActions;
+        
+    private void DisableAllInputs()
+    {
+        controls.SpaceShip.Disable();
+        controls.LimitedSpaceShip.Disable();
     }
 }
