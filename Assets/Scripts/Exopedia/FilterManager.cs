@@ -5,7 +5,7 @@ class FilterManager
 {
     public List<Filter> Filters { get; private set; }
 
-    FilterManager()
+    public FilterManager()
     {
         Filters = new List<Filter>();   
     }
@@ -15,22 +15,27 @@ class FilterManager
         Filters.RemoveAt(index);
     }
 
-    public List<ExoplanetData> GetFilteredPlanets(List<ExoplanetData> data)
+    public void ClearFilters()
     {
-        BitArray bitArray = new(data.Count);
+        Filters.Clear();
+    }
+
+    public List<ExoplanetData> GetFilteredPlanets()
+    {
+        BitArray bitArray = new(ExoplanetDataStorer.Instance.Planets.Count);
         bitArray.SetAll(true);
 
         for (int i = 0; i < Filters.Count; i++)
         {
-            bitArray = bitArray.Xor(Filters[i].GetFilterBitArray(data));
+            bitArray = bitArray.Xor(Filters[i].GetFilterBitArray());
         }
 
         List<ExoplanetData> outList = new();
-        for (int i = 0; i < data.Count; i++)
+        for (int i = 0; i < ExoplanetDataStorer.Instance.Planets.Count; i++)
         {
-            if (bitArray[i])
+            if (bitArray[i] == true)
             {
-                outList.Add(data[i]);
+                outList.Add(ExoplanetDataStorer.Instance.Planets[i]);
             }
         }
         return outList;

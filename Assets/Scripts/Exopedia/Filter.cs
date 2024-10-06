@@ -6,7 +6,7 @@ public enum FilterType
 {
     NbStars,
     NbPlanet,
-    PlanetRadius,
+    RadiusInEarth,
     Temperature,
     MassInEarth,
     OrbitDurationInDays,
@@ -68,7 +68,7 @@ class Filter
         outputComputed = false;
     }
 
-    public BitArray GetFilterBitArray(List<ExoplanetData> data)
+    public BitArray GetFilterBitArray()
     {
         if (outputComputed)
         {
@@ -84,8 +84,8 @@ class Filter
             case FilterType.NbPlanet:
                 propertyGetterLambda = (x) => x.NbPlanet;
                 break;
-            case FilterType.PlanetRadius:
-                propertyGetterLambda = (x) => x.PlanetRadius;
+            case FilterType.RadiusInEarth:
+                propertyGetterLambda = (x) => x.RadiusInEarth;
                 break;
             case FilterType.Temperature:
                 propertyGetterLambda = (x) => x.Temperature;
@@ -124,13 +124,13 @@ class Filter
                 break;
         }
 
-        output = new(data.Count);
+        output = new(ExoplanetDataStorer.Instance.Planets.Count);
         output.SetAll(true);
-        for (int i = 0; i < data.Count; i++)
+        for (int i = 0; i < ExoplanetDataStorer.Instance.Planets.Count; i++)
         {
-            if (propertyGetterLambda(data[i]) != null)
+            if (propertyGetterLambda(ExoplanetDataStorer.Instance.Planets[i]) != null)
             {
-                output[i] = orderingLambda(propertyGetterLambda(data[i]).Value, limit);
+                output[i] = orderingLambda(propertyGetterLambda(ExoplanetDataStorer.Instance.Planets[i]).Value, limit);
             }
         }
         outputComputed = true;
