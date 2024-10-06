@@ -77,8 +77,11 @@ public class Exopedia : SingletonMonobehavior<Exopedia>
 
     private void RemoveFilterButtonClicked()
     {
-        filterManager.Filters.RemoveAt(filterManager.Filters.Count - 1);
-        RecomputeFilters();
+        if (filterManager.Filters.Count == 0)
+        {
+            filterManager.Filters.RemoveAt(filterManager.Filters.Count - 1);
+            RecomputeFilters();
+        }
     }
 
     private void ConfirmSelectionButtonClicked()
