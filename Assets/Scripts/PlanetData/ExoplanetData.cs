@@ -76,7 +76,6 @@ public class ExoplanetData
         }
         return value;
     }
-
     private static int GetInt(char val)
     {
         switch (val)
@@ -92,5 +91,24 @@ public class ExoplanetData
             case '9': return 9;
         }
         return 0;
+    }
+
+
+    public static bool operator==(ExoplanetData left, ExoplanetData right)
+    {
+        return left.PlanetName == right.PlanetName &&
+               left.SystemName == right.SystemName &&
+               left.NbStars == right.NbStars &&
+               left.NbMoon == right.NbMoon &&
+               left.RadiusInEarth == right.RadiusInEarth &&
+               left.Temperature == right.Temperature &&
+               left.MassInEarth == right.MassInEarth &&
+               left.OrbitDurationInDays == right.OrbitDurationInDays &&
+               left.DistanceFromEarth == right.DistanceFromEarth &&
+               left.TransitDuration == right.TransitDuration;
+    }
+    public static bool operator!=(ExoplanetData left, ExoplanetData right)
+    {
+        return !(left == right);
     }
 }

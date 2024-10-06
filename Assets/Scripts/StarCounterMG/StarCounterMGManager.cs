@@ -95,8 +95,8 @@ public class StarCounterMGManager : SingletonMonobehavior<StarCounterMGManager>
         for(int i = 0; (i <= MAX_NB_TRY) && !isValide; i++)
         {
             isValide = true;
-            float xCord = Random.Range(spawnBounds.min.x + prefab.Radius, spawnBounds.max.x - prefab.Radius);
-            float yCord = Random.Range(spawnBounds.min.y + prefab.Radius, spawnBounds.max.y - prefab.Radius);
+            float xCord = Random.Range(spawnBounds.min.x + prefab.Radius *1.1f, spawnBounds.max.x - prefab.Radius*1.1f);
+            float yCord = Random.Range(spawnBounds.min.y + prefab.Radius*1.1f, spawnBounds.max.y - prefab.Radius*1.1f);
             newPos = new Vector2(xCord, yCord);
             foreach ((Vector2, float) elem in spawned)
             {

@@ -33,10 +33,9 @@ public class CameraController : MonoBehaviour
         position.x += input.x;
 
         //clamp the new position to the defined borders 
-        position.x = Mathf.Clamp(position.x, zoneBound.min.x + width, zoneBound.max.x - width);
-        position.y = Mathf.Clamp(position.y, zoneBound.min.y + height, zoneBound.max.y - height);
+        position.x = Mathf.Clamp(position.x, zoneBound.min.x + width * .9f, zoneBound.max.x - width * .9f);
+        position.y = Mathf.Clamp(position.y, zoneBound.min.y + height * .9f, zoneBound.max.y - height * .9f);
 
         transform.position = position;
     }
-    
 }
