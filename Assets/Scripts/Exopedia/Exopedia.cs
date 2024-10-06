@@ -54,7 +54,7 @@ public class Exopedia : SingletonMonobehavior<Exopedia>
 
     private void ForwardButtonClicked()
     {
-        pageIndex = System.Math.Min(ExoplanetDataStorer.Instance.Planets.Count - 1, pageIndex + 1);
+        pageIndex = System.Math.Min( filteredPlanets.Count - 1, pageIndex + 1);
     }
 
     private void PropertySelectorButtonClicked()
@@ -77,8 +77,11 @@ public class Exopedia : SingletonMonobehavior<Exopedia>
 
     private void RemoveFilterButtonClicked()
     {
-        filterManager.Filters.RemoveAt(filterManager.Filters.Count - 1);
-        RecomputeFilters();
+        if (filterManager.Filters.Count != 0)
+        {
+            filterManager.Filters.RemoveAt(filterManager.Filters.Count - 1);
+            RecomputeFilters();
+        }
     }
 
     private void ConfirmSelectionButtonClicked()

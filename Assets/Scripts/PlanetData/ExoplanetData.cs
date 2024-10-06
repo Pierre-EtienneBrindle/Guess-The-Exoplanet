@@ -19,34 +19,36 @@ public class ExoplanetData
         PlanetName = name;
         foreach (var keyValue in keyValuePairs)
         {
-            switch (keyValue.Key)
+            string key = keyValue.Key.Trim();
+            string value = keyValue.Value.Trim();
+            switch (key)
             {
                 case "hostname":
-                    SystemName = keyValue.Value;
+                    SystemName = value;
                     break;
                 case "sy_snum":
-                    NbStars = int.Parse(keyValue.Value);
+                    NbStars = int.Parse(value);
                     break;
                 case "sy_pnum":
-                    NbPlanet = int.Parse(keyValue.Value);
+                    NbPlanet = int.Parse(value);
                     break;
                 case "sy_mnum":
-                    NbMoon = int.Parse(keyValue.Value);
+                    NbMoon = int.Parse(value);
                     break;
                 case "pl_orbper":
-                    OrbitDurationInDays = MyFloatParser(keyValue.Value);
+                    OrbitDurationInDays = MyFloatParser(value);
                     break;
                 case "pl_rade":
-                    RadiusInEarth = MyFloatParser(keyValue.Value);
+                    RadiusInEarth = MyFloatParser(value);
                     break;
                 case "pl_masse":
-                    MassInEarth = MyFloatParser(keyValue.Value);
+                    MassInEarth = MyFloatParser(value);
                     break;
                 case "pl_eqt":
-                    Temperature = MyFloatParser(keyValue.Value);
+                    Temperature = MyFloatParser(value);
                     break;
                 case "sy_dist":
-                    DistanceFromEarth = MyFloatParser(keyValue.Value);
+                    DistanceFromEarth = MyFloatParser(value);
                     break;
                 default:
                     break;
