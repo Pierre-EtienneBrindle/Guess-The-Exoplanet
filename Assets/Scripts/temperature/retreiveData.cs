@@ -16,4 +16,7 @@ public class retreiveData : MonoBehaviour
     {
         
     }
+
+    public void SetTemperature(float value) //function called when the game is started 
+        => temperature = value;
 }
