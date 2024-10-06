@@ -39,17 +39,6 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             ],
             ""bindings"": [
                 {
-                    ""name"": """",
-                    ""id"": ""35063410-2150-4b24-96ad-aa6b18758602"",
-                    ""path"": """",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Movement"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
                     ""name"": ""AWSD"",
                     ""id"": ""6458814e-5abe-4ab9-8f3c-7e0a7aa83c2c"",
                     ""path"": ""2DVector"",
@@ -103,6 +92,271 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Arrows"",
+                    ""id"": ""46233334-8074-404d-b876-80873044feb1"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""4e3296ed-256e-44d7-8839-97b646fa2876"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""714efee1-1196-465a-86e7-81f671ccf22d"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""396d7979-c3c5-47d6-9ae1-b827207c6a67"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""f04086df-6926-4170-8c54-4bb64e25a1f6"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c6f57c11-331e-463a-9c15-83cdcba27ae3"",
+                    ""path"": ""<Gamepad>/dpad"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""741d293e-538b-4200-96a8-272c2e1bee7d"",
+                    ""path"": ""<Gamepad>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""LimitedSpaceShip"",
+            ""id"": ""1f45c70f-c63e-4ea0-8207-326a07cdaaff"",
+            ""actions"": [
+                {
+                    ""name"": ""Movement"",
+                    ""type"": ""Value"",
+                    ""id"": ""49afe923-f4c5-4c89-8856-7d2bf024cdf6"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": ""AD"",
+                    ""id"": ""7cf58f62-ef11-4f81-a3b0-284125ed726a"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""47a710f2-3c76-4545-acbb-a68852e8a28b"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""def31067-08e9-4f77-b0c6-b95655bec89c"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Arrows"",
+                    ""id"": ""22bfc92d-5745-49e2-addf-b35db20b36cb"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""931f9914-883e-4aa5-8504-42b673581503"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""987f98c6-b5db-4295-af61-79f34c19d515"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""DPad"",
+                    ""id"": ""376739b6-d03a-408d-8a57-4360071dad37"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""fd4b8115-833a-4da3-98c1-67c0e63591da"",
+                    ""path"": ""<Gamepad>/dpad/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""6c383f57-8b1c-4015-9666-69df3a2befa7"",
+                    ""path"": ""<Gamepad>/dpad/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Stick"",
+                    ""id"": ""67c68adb-a136-4f47-af66-ba662b5a3599"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""0f72b588-4dfa-4fee-b73d-faa9f3e9a013"",
+                    ""path"": ""<Gamepad>/leftStick/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""5233cb46-30ef-4920-ae97-58df5f6fd4f0"",
+                    ""path"": ""<Gamepad>/leftStick/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                }
+            ]
+        },
+        {
+            ""name"": ""GeneralActions"",
+            ""id"": ""2fd11fb4-2791-4dbc-a95c-27814cba10ec"",
+            ""actions"": [
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""4be20921-cfa1-41c8-8b5a-c8a2c865d12c"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""83c89334-a18d-49b1-8e06-a4b8131347a1"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""579865df-4d3e-4d7b-ae8d-187126e04306"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -112,11 +366,19 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         // SpaceShip
         m_SpaceShip = asset.FindActionMap("SpaceShip", throwIfNotFound: true);
         m_SpaceShip_Movement = m_SpaceShip.FindAction("Movement", throwIfNotFound: true);
+        // LimitedSpaceShip
+        m_LimitedSpaceShip = asset.FindActionMap("LimitedSpaceShip", throwIfNotFound: true);
+        m_LimitedSpaceShip_Movement = m_LimitedSpaceShip.FindAction("Movement", throwIfNotFound: true);
+        // GeneralActions
+        m_GeneralActions = asset.FindActionMap("GeneralActions", throwIfNotFound: true);
+        m_GeneralActions_Pause = m_GeneralActions.FindAction("Pause", throwIfNotFound: true);
     }
 
     ~@PlayerInput()
     {
         UnityEngine.Debug.Assert(!m_SpaceShip.enabled, "This will cause a leak and performance issues, PlayerInput.SpaceShip.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_LimitedSpaceShip.enabled, "This will cause a leak and performance issues, PlayerInput.LimitedSpaceShip.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_GeneralActions.enabled, "This will cause a leak and performance issues, PlayerInput.GeneralActions.Disable() has not been called.");
     }
 
     public void Dispose()
@@ -220,8 +482,108 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         }
     }
     public SpaceShipActions @SpaceShip => new SpaceShipActions(this);
+
+    // LimitedSpaceShip
+    private readonly InputActionMap m_LimitedSpaceShip;
+    private List<ILimitedSpaceShipActions> m_LimitedSpaceShipActionsCallbackInterfaces = new List<ILimitedSpaceShipActions>();
+    private readonly InputAction m_LimitedSpaceShip_Movement;
+    public struct LimitedSpaceShipActions
+    {
+        private @PlayerInput m_Wrapper;
+        public LimitedSpaceShipActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Movement => m_Wrapper.m_LimitedSpaceShip_Movement;
+        public InputActionMap Get() { return m_Wrapper.m_LimitedSpaceShip; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(LimitedSpaceShipActions set) { return set.Get(); }
+        public void AddCallbacks(ILimitedSpaceShipActions instance)
+        {
+            if (instance == null || m_Wrapper.m_LimitedSpaceShipActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_LimitedSpaceShipActionsCallbackInterfaces.Add(instance);
+            @Movement.started += instance.OnMovement;
+            @Movement.performed += instance.OnMovement;
+            @Movement.canceled += instance.OnMovement;
+        }
+
+        private void UnregisterCallbacks(ILimitedSpaceShipActions instance)
+        {
+            @Movement.started -= instance.OnMovement;
+            @Movement.performed -= instance.OnMovement;
+            @Movement.canceled -= instance.OnMovement;
+        }
+
+        public void RemoveCallbacks(ILimitedSpaceShipActions instance)
+        {
+            if (m_Wrapper.m_LimitedSpaceShipActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(ILimitedSpaceShipActions instance)
+        {
+            foreach (var item in m_Wrapper.m_LimitedSpaceShipActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_LimitedSpaceShipActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public LimitedSpaceShipActions @LimitedSpaceShip => new LimitedSpaceShipActions(this);
+
+    // GeneralActions
+    private readonly InputActionMap m_GeneralActions;
+    private List<IGeneralActionsActions> m_GeneralActionsActionsCallbackInterfaces = new List<IGeneralActionsActions>();
+    private readonly InputAction m_GeneralActions_Pause;
+    public struct GeneralActionsActions
+    {
+        private @PlayerInput m_Wrapper;
+        public GeneralActionsActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Pause => m_Wrapper.m_GeneralActions_Pause;
+        public InputActionMap Get() { return m_Wrapper.m_GeneralActions; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(GeneralActionsActions set) { return set.Get(); }
+        public void AddCallbacks(IGeneralActionsActions instance)
+        {
+            if (instance == null || m_Wrapper.m_GeneralActionsActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_GeneralActionsActionsCallbackInterfaces.Add(instance);
+            @Pause.started += instance.OnPause;
+            @Pause.performed += instance.OnPause;
+            @Pause.canceled += instance.OnPause;
+        }
+
+        private void UnregisterCallbacks(IGeneralActionsActions instance)
+        {
+            @Pause.started -= instance.OnPause;
+            @Pause.performed -= instance.OnPause;
+            @Pause.canceled -= instance.OnPause;
+        }
+
+        public void RemoveCallbacks(IGeneralActionsActions instance)
+        {
+            if (m_Wrapper.m_GeneralActionsActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IGeneralActionsActions instance)
+        {
+            foreach (var item in m_Wrapper.m_GeneralActionsActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_GeneralActionsActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public GeneralActionsActions @GeneralActions => new GeneralActionsActions(this);
     public interface ISpaceShipActions
     {
         void OnMovement(InputAction.CallbackContext context);
+    }
+    public interface ILimitedSpaceShipActions
+    {
+        void OnMovement(InputAction.CallbackContext context);
+    }
+    public interface IGeneralActionsActions
+    {
+        void OnPause(InputAction.CallbackContext context);
     }
 }

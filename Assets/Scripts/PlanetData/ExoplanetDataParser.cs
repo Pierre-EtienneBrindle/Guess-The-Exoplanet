@@ -18,7 +18,7 @@ public static class ExoplanetDataParser
                 continue;
             
             string[] fields = line.Split(",");
-            if (fields.Length == 0)
+            if (fields.Length <= 1)
                 continue;
             
             if (fieldNames.Length == 0)
