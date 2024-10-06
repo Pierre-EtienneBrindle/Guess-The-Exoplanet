@@ -71,4 +71,26 @@ public class ExoplanetData
     {
         return !(left == right);
     }
+
+    public override bool Equals(object obj)
+    {
+        if (obj is ExoplanetData) {
+            return this == (ExoplanetData)obj;
+        }
+        throw new System.ArgumentException("obj isn't an ExoplanetData");
+    }
+
+    public override int GetHashCode()
+    {
+        return PlanetName.GetHashCode() ^
+        SystemName.GetHashCode() ^
+        NbStars.GetHashCode() ^
+        NbMoon.GetHashCode() ^
+        RadiusInEarth.GetHashCode() ^
+        Temperature.GetHashCode() ^
+        MassInEarth.GetHashCode() ^
+        OrbitDurationInDays.GetHashCode() ^
+        DistanceFromEarth.GetHashCode() ^
+        TransitDuration.GetHashCode();
+    }
 }
