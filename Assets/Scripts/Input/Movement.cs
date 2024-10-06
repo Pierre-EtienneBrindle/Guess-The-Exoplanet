@@ -31,8 +31,6 @@ public class Movement : MonoBehaviour
     void FixedUpdate()
     {
         Vector2 input = SpaceShipInput.Movement.ReadValue<Vector2>();
-        Debug.Log(input.x);
-        Debug.Log(input.y);
         Vector3 move = new(0f, 0f, 0f);
         //Vector3 speed = new(movement.x + input.x, movement.y + input.y, 0);
         //movement.x += input.x;
