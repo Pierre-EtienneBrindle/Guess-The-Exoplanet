@@ -23,4 +23,8 @@ public class ExoplanetDataStorer : SingletonMonobehavior<ExoplanetDataStorer>
         foreach (KeyValuePair<string, Dictionary<string,string>> planet in parsed)
             Planets.Add(planet.Key, new ExoplanetData(planet.Key, planet.Value));
     }
+
+    public ExoplanetData GetRandomExoplanet()
+        => Planets[Planets.Keys[Random.Range(0, Planets.Count)]];
+    
 }
