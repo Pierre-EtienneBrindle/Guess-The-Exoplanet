@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using TMPro;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,7 +17,13 @@ public class rotateAround : MonoBehaviour
     [SerializeField] private GameObject Infrarouge;
 
     private TMP_Text txt_infrarouge;
+    [SerializeField] private GameObject parent;
+    [SerializeField] private GameObject sphere1;
+    [SerializeField] private GameObject sphere2;
+    [SerializeField] private GameObject sphere3;
 
+    [SerializeField] private GameManager gameManager;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -25,6 +33,7 @@ public class rotateAround : MonoBehaviour
         wait = 1.0f;
         waitTemp = 0.0f;
         txt_infrarouge = Infrarouge.GetComponent<TMP_Text>();
+
     }
 
     // Update is called once per frame
@@ -40,10 +49,21 @@ public class rotateAround : MonoBehaviour
         }
         else
         {
-            if(transform.rotation.eulerAngles.z >= 83 && transform.rotation.eulerAngles.z <= 97)
+            if(transform.rotation.eulerAngles.z >= 80 && transform.rotation.eulerAngles.z <= 102)
             {
                 //mettre le texte infrarouge en vert
                 txt_infrarouge.color = Color.green;
+              
+                Image img = parent.GetComponent<Image>();
+            
+                sphere1.GetComponent<Image>().color = Random.ColorHSV();
+                sphere2.GetComponent<Image>().color = Random.ColorHSV();
+                sphere3.GetComponent<Image>().color = Random.ColorHSV();
+
+                sphere1.SetActive(true);
+                sphere2.SetActive(true);
+                sphere3.SetActive(true);
+                
             }
             else
             {
