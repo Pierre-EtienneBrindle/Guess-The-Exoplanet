@@ -4,6 +4,10 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : SingletonMonobehavior<GameManager>
 {
+    bool isPaused = false;
+    PossibleScenes currScene = PossibleScenes.Menu;
+    ExoplanetData currPlanet = null;
+
     //because I cannot TAB SceneManager.LoadScene()
     private void SLoad(string scene_name)
     {
@@ -13,6 +17,7 @@ public class GameManager : SingletonMonobehavior<GameManager>
     //The Big fonction that change scene, be sure to write the correct scene string name
     public void ChangeScene(PossibleScenes scene)
     {
+        currScene = scene;
         switch (scene)
         {
             case PossibleScenes.Menu:
@@ -22,10 +27,10 @@ public class GameManager : SingletonMonobehavior<GameManager>
                 SLoad("Credit");
                 break;
             case PossibleScenes.Ship:
-                SLoad("Ship");
+                StartGame();
                 break;
-            case PossibleScenes.MiniG1:
-                SLoad("PlyaerMovementTest");
+            case PossibleScenes.StarDistanceMG:
+                SLoad("StarDistanceMG");
                 break;
             case PossibleScenes.MiniG2:
                 SLoad("");
@@ -39,6 +44,32 @@ public class GameManager : SingletonMonobehavior<GameManager>
         }
     }
 
+    void StartGame()
+    {
+        SLoad("Ship");
+        currPlanet = ExoplanetDataStorer.Instance.GetRandomExoplanet();
+        //ShipManager.Instance.SetPlanetPicture(generatedPictureFromCode);
+    }
+
+    public void TogglePause()
+    {
+        if (!isPaused && currScene != PossibleScenes.Menu)
+            Pause();
+        else if(isPaused)
+            Pause();
+    }
+
+    private void Pause()
+    {
+        Time.timeScale = 0;
+        isPaused = true;
+    }
+
+    private void UnPause()
+    {
+        Time.timeScale = 1;
+        isPaused = false;
+    }
 
     protected override void Awake()
     {
@@ -51,7 +82,7 @@ public enum PossibleScenes {
     Menu,
     Credit,
     Ship,
-    MiniG1,
+    StarDistanceMG,
     MiniG2,
     MiniG3,
     MiniG4
