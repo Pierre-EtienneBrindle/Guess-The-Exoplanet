@@ -135,6 +135,7 @@ public class Exopedia : SingletonMonobehavior<Exopedia>
         if (filteredPlanets.Count > 0)
         {
             planetName.text = filteredPlanets[pageIndex].PlanetName;
+            planetImage.sprite = ExoplanetSpriteGenerator.Instance.GenerateSprite(filteredPlanets[pageIndex]);
         } else
         {
             planetName.text = "No planets";
