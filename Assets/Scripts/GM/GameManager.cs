@@ -57,10 +57,10 @@ public class GameManager : SingletonMonobehavior<GameManager>
                 StartCoroutine(StartTemperatureMinigame());
                 break;
             case PossibleScenes.GravityMG:
-                SLoad("");
+                StartCoroutine(StartMassMG());
                 break;
             case PossibleScenes.Wiki:
-                SLoad("");
+                SLoad("Exopedia");
                 break;
         }
     }
@@ -115,35 +115,10 @@ public class GameManager : SingletonMonobehavior<GameManager>
     {
         if(hasDoneMassReading || currPlanet.MassInEarth == null)
             yield break;
-        SLoad("");
+        SLoad("PlanetMasse");
         yield return null;
         yield return null; 
         yield return null;
-    }
-
-    public void TogglePause()
-    {
-        if (!isPaused && currScene != PossibleScenes.Menu)
-            Pause();
-        else if(isPaused)
-            Pause();
-    }
-
-    private void Pause()
-    {
-        Time.timeScale = 0;
-        isPaused = true;
-    }
-
-    private void UnPause()
-    {
-        Time.timeScale = 1;
-        isPaused = false;
-    }
-
-    protected override void Awake()
-    {
-        base.Awake();
     }
 
     public void OnStarCounterMGSucess(int nbMoon, int nbStars, int nbPlanets)
@@ -154,6 +129,7 @@ public class GameManager : SingletonMonobehavior<GameManager>
         nbMoonFound = nbMoon;
         nbStarsFound = nbStars;
         nbPlanetsFound = nbPlanets;
+        SLoad("Ship");
     }
 
     public void OnTemperatureMGDone(float min, float max)
@@ -163,6 +139,7 @@ public class GameManager : SingletonMonobehavior<GameManager>
         hasDoneTemperatureReading = true;
         minTemp = min;
         maxTemp = max;
+        SLoad("Ship");
     }
 
     public void OnDistanceMGDone(float dist)
@@ -181,6 +158,7 @@ public class GameManager : SingletonMonobehavior<GameManager>
         hasDoneMassReading = true;
         minMass = min;
         maxMass = max;
+        SLoad("Ship");
     }
 }
 

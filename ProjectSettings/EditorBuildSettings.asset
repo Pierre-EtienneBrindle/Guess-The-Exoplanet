@@ -20,4 +20,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/StarCounterMG.unity
     guid: 3975b6b84684f114099226d110ccf460
+  - enabled: 1
+    path: Assets/Scenes/temperature scene.unity
+    guid: 921d1e767d8dac847871e327bfbe90ee
+  - enabled: 1
+    path: Assets/Scenes/PlanetMasse.unity
+    guid: b79ce93d55027c64a970a4bc3785f272
+  - enabled: 1
+    path: Assets/Scenes/Exopedia.unity
+    guid: 1edcbc5ea78064c449e054c02e8bf5c8
   m_configObjects: {}
