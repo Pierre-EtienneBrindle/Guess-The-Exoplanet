@@ -76,6 +76,7 @@ public class retreiveData : MonoBehaviour
             maxtemp = temperature + Random.Range(0.0f, failedAttemp);
             Mathf.Round(maxtemp);
             tempDisplay.GetComponent<TMP_Text>().SetText("the temperature is at minimum " + mintemp + " K and the maximum is " + maxtemp + " K");
+            GameManager.Instance.OnTemperatureMGDone(mintemp, maxtemp);
             tempDisplay.SetActive(true);
         }
     }
