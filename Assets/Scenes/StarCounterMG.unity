@@ -570,7 +570,7 @@ MonoBehaviour:
   moonsText: {fileID: 1790722037}
   planetsText: {fileID: 1565280146}
   timerText: {fileID: 2076155293}
-  gameDuration: 60
+  gameDuration: 90
 --- !u!61 &891301955
 BoxCollider2D:
   m_ObjectHideFlags: 0

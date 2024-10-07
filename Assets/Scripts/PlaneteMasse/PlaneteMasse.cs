@@ -3,7 +3,6 @@ using UnityEngine.UI;
 using static System.Math;
 using TMPro;
 
-
 public class MiniGameMass : MonoBehaviour
 {
     [SerializeField] TMP_Text textMass;
@@ -20,6 +19,8 @@ public class MiniGameMass : MonoBehaviour
     float EARTHMASS = 5.972f * (float)Pow(10,24); // mass of earth
     readonly float G = 6.6743015f * (float)Pow(10,-17); // constante gravitationnel
     const float DIVISEUR =  667.4f*597.2f; // diviseur constant de la force gravité
+
+    bool isSet = false;
 
 
     void Start()
@@ -41,6 +42,9 @@ public class MiniGameMass : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!isSet)
+            return;
+
         Bouger(Time.deltaTime);
         textDist.text = $"Distance: {(float)Round(distance, 3)} m";
         searchMass = (float)Round(slider.value*THRUSTER * distance*distance / G / EARTHMASS);
@@ -61,8 +65,13 @@ public class MiniGameMass : MonoBehaviour
         }
     }
 
-    public void SetPlanetMass(float mass) => PLANETMASS = mass;
+    public void SetPlanetMassData(float mass, Sprite sprite)
+    {
+        PLANETMASS = mass;
+        image.sprite = sprite;
+        isSet = true;
+    }
+
     void Quit()
         => GameManager.Instance?.OnMassMGDone(searchMass);
-    
 }

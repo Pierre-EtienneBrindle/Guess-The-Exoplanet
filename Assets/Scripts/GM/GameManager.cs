@@ -44,7 +44,7 @@ public class GameManager : SingletonMonobehavior<GameManager>
                 SLoad("Credit");
                 break;
             case PossibleScenes.Ship:
-                StartGame();
+                StartCoroutine(StartGame());
                 break;
             case PossibleScenes.StarDistanceMG:
                 StartCoroutine(StartDistanceMG());
@@ -64,12 +64,15 @@ public class GameManager : SingletonMonobehavior<GameManager>
         }
     }
 
-    void StartGame()
+    IEnumerator StartGame()
     {
         SLoad("Ship");
+        yield return null;
+        yield return null;
+        yield return null;    
         currPlanet = ExoplanetDataStorer.Instance.GetRandomExoplanet();
         Debug.Log(currPlanet.PlanetName);
-        //ShipManager.Instance.SetPlanetPicture(generatedPictureFromCode);
+        ShipManager.Instance.SetPlanetPicture(ExoplanetSpriteGenerator.Instance.GenerateSprite(currPlanet));
     }
 
     IEnumerator StartDistanceMG()
@@ -118,6 +121,7 @@ public class GameManager : SingletonMonobehavior<GameManager>
         yield return null;
         yield return null; 
         yield return null;
+        GameObject.FindWithTag("DataReceiver").GetComponent<MiniGameMass>().SetPlanetMassData(currPlanet.MassInEarth.Value, ExoplanetSpriteGenerator.Instance.GenerateSprite(currPlanet));
     }
 
     public void OnStarCounterMGSucess(int nbMoon, int nbStars, int nbPlanets)
