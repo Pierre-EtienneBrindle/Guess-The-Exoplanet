@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
 using static System.Math;
-using static System.Random;
 using TMPro;
 
 
@@ -12,7 +11,7 @@ public class MiniGameMass : MonoBehaviour
     [SerializeField] TMP_Text textThruster;
     [SerializeField] TMP_Text textTempo;
     [SerializeField] Slider slider;
-    [SerializeField] float PLANETMASS;
+    float PLANETMASS;
     [SerializeField] Image image;
     float searchMass;
     float acc;
@@ -62,9 +61,8 @@ public class MiniGameMass : MonoBehaviour
         }
     }
 
-
+    public void SetPlanetMass(float mass) => PLANETMASS = mass;
     void Quit()
-    {
-        //revenir au vaisseau
-    }
+        => GameManager.Instance?.OnMassMGDone(searchMass);
+    
 }

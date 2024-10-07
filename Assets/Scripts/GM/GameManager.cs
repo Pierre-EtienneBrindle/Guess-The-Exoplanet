@@ -22,8 +22,7 @@ public class GameManager : SingletonMonobehavior<GameManager>
     float distanceMeasured = float.MaxValue;
 
     bool hasDoneMassReading = false;
-    float maxMass = float.MinValue;
-    float minMass = float.MaxValue;
+    float aproximateMass = float.MinValue;
 
 
     //because I cannot TAB SceneManager.LoadScene()
@@ -151,13 +150,12 @@ public class GameManager : SingletonMonobehavior<GameManager>
         SLoad("Ship");  
     }
 
-    public void OnMassMGDone(float min, float max)
+    public void OnMassMGDone(float mass)
     {
         if(hasDoneMassReading)
             return;
         hasDoneMassReading = true;
-        minMass = min;
-        maxMass = max;
+        aproximateMass = mass;
         SLoad("Ship");
     }
 }

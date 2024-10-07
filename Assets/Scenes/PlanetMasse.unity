@@ -927,7 +927,7 @@ GameObject:
   - component: {fileID: 1093660224}
   m_Layer: 0
   m_Name: MiniGameScripter
-  m_TagString: Untagged
+  m_TagString: DataReceiver
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -949,7 +949,6 @@ MonoBehaviour:
   textThruster: {fileID: 1370324905}
   textTempo: {fileID: 371871057}
   slider: {fileID: 1643450585}
-  PLANETMASS: 0
   image: {fileID: 32986668}
 --- !u!4 &1093660225
 Transform:
