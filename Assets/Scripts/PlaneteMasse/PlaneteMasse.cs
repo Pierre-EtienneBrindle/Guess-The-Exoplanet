@@ -36,9 +36,7 @@ public class MiniGameMass : MonoBehaviour
     {
         acc = -((float)Round(G * PLANETMASS / distance / distance - (float)slider.value*THRUSTER, 2));
         distance += (float)Round(acc/2*dt*dt, 2); // using it without velocity because it makes the game harder
-        float acc = -Math.Round(G * PlanetMass / distance / distance - slider.value*1000, 2);
-        distance += vitesse * dt + acc * dt * dt;
-        vitesse += acc * distance;
+        distance += acc * dt * dt;
     }
 
     // Update is called once per frame
@@ -50,7 +48,6 @@ public class MiniGameMass : MonoBehaviour
         textMass.text = $"Mass: {searchMass} earth";
         textThruster.text = $"Thruster: {Round(slider.value*THRUSTER)} N";
         textTempo.text = $"{Round(30-Time.time)} s";
-        float v = 25000f/distance;
         if (acc < 0)
         {
             image.rectTransform.localScale += Vector3.one * -acc / 10000000;
