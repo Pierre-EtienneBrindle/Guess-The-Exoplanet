@@ -21,6 +21,10 @@ public class GameManager : SingletonMonobehavior<GameManager>
     bool hasDoneDistanceReading = false;
     float distanceMeasured = float.MaxValue;
 
+    bool hasDoneMassReading = false;
+    float maxMass = float.MinValue;
+    float minMass = float.MaxValue;
+
 
     //because I cannot TAB SceneManager.LoadScene()
     private void SLoad(string scene_name)
@@ -52,7 +56,10 @@ public class GameManager : SingletonMonobehavior<GameManager>
             case PossibleScenes.TemperatureMG:
                 StartCoroutine(StartTemperatureMinigame());
                 break;
-            case PossibleScenes.MiniG4:
+            case PossibleScenes.GravityMG:
+                SLoad("");
+                break;
+            case PossibleScenes.Wiki:
                 SLoad("");
                 break;
         }
@@ -102,6 +109,16 @@ public class GameManager : SingletonMonobehavior<GameManager>
         yield return null; 
         yield return null;
         GameObject.FindWithTag("DataReceiver").GetComponent<retreiveData>().SetTemperature(currPlanet.Temperature.Value);
+    }
+
+    IEnumerator StartMassMG()
+    {
+        if(hasDoneMassReading || currPlanet.MassInEarth == null)
+            yield break;
+        SLoad("");
+        yield return null;
+        yield return null; 
+        yield return null;
     }
 
     public void TogglePause()
@@ -156,6 +173,15 @@ public class GameManager : SingletonMonobehavior<GameManager>
         distanceMeasured = dist;
         SLoad("Ship");  
     }
+
+    public void OnMassMGDone(float min, float max)
+    {
+        if(hasDoneMassReading)
+            return;
+        hasDoneMassReading = true;
+        minMass = min;
+        maxMass = max;
+    }
 }
 
 // All possible reference for button to change the game state
@@ -166,5 +192,6 @@ public enum PossibleScenes {
     StarDistanceMG,
     StarCounterMG,
     TemperatureMG,
-    MiniG4
+    GravityMG,
+    Wiki
 }
