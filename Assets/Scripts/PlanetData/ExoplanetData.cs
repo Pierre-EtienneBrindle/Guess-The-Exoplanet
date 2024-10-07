@@ -135,4 +135,9 @@ public class ExoplanetData
         DistanceFromEarth.GetHashCode() ^
         TransitDuration.GetHashCode();
     }
+
+    public Sprite GenerateSprite()
+    {
+        
+    }
 }
