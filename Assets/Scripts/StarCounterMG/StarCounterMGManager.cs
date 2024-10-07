@@ -17,7 +17,7 @@ public class StarCounterMGManager : SingletonMonobehavior<StarCounterMGManager>
 
 
     [SerializeField] TMP_Text timerText;
-    [SerializeField] float gameDuration = 60f; // duartion of the game. 
+    [SerializeField] float gameDuration = 90f; // duartion of the game. 
     
     bool wasSet = false;
     bool isDoneReading = false;
