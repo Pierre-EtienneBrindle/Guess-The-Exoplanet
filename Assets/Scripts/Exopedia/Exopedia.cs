@@ -20,6 +20,9 @@ public class Exopedia : SingletonMonobehavior<Exopedia>
     [SerializeField] Button confirmSelectionButton;
     [SerializeField] Button addFilterButton;
     [SerializeField] Button removeFilterButton;
+    [SerializeField] Canvas defaultCanvas;
+    [SerializeField] Canvas sucessCanvas;
+    [SerializeField] Canvas failedCanvas;
 
     FilterManager filterManager;
     List<ExoplanetData> filteredPlanets;
@@ -86,7 +89,11 @@ public class Exopedia : SingletonMonobehavior<Exopedia>
 
     private void ConfirmSelectionButtonClicked()
     {
-        // TODO: Dire au gamemanager qu'une planette a été choisie.
+        defaultCanvas.enabled = false;
+        if (GameManager.Instance.IsGuessSucessfull(filteredPlanets[pageIndex]))
+            sucessCanvas.enabled = true;
+        else
+            failedCanvas.enabled = true;
     }
     private void RecomputeFilters()
     {
@@ -144,6 +151,10 @@ public class Exopedia : SingletonMonobehavior<Exopedia>
 
     private void Start()
     {
+        defaultCanvas.enabled = true;
+        sucessCanvas.enabled = false;
+        failedCanvas.enabled = false;
+
         pageIndex = 0;
         planetPropertyIndex = 0;
         orderingIndex = 0;
