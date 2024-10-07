@@ -70,7 +70,11 @@ public class GameManager : SingletonMonobehavior<GameManager>
         yield return null;
         yield return null;
         yield return null;    
+        
         currPlanet = ExoplanetDataStorer.Instance.GetRandomExoplanet();
+        while (currPlanet.Temperature == null)
+            currPlanet = ExoplanetDataStorer.Instance.GetRandomExoplanet();
+
         Debug.Log(currPlanet.PlanetName);
         ShipManager.Instance.SetPlanetPicture(ExoplanetSpriteGenerator.Instance.GenerateSprite(currPlanet));
     }
